@@ -1,10 +1,36 @@
 "use client";
 
-import React, { useEffect, useRef, useState, useCallback } from "react";
+import React, {
+  useEffect,
+  useRef,
+  useState,
+  useCallback,
+  type ElementType,
+  type ReactNode,
+  type HTMLAttributes,
+  type ComponentPropsWithoutRef,
+} from "react";
 import {
-  Mail, Phone, MapPin, Github, ExternalLink, ArrowUp, ArrowRight,
-  Code2, Database, Globe, Wrench, Trophy, Award, BookOpen, Users,
-  GraduationCap, Sparkles, Menu, X, Send
+  Mail,
+  Phone,
+  MapPin,
+  Github,
+  ExternalLink,
+  ArrowUp,
+  ArrowRight,
+  Code2,
+  Database,
+  Globe,
+  Wrench,
+  Trophy,
+  Award,
+  BookOpen,
+  Users,
+  GraduationCap,
+  Sparkles,
+  Menu,
+  X,
+  Send,
 } from "lucide-react";
 
 const AVATAR_SRC = "/avatar.jpg";
@@ -101,8 +127,11 @@ const ACHIEVEMENTS = [
 /* Hooks                                                               */
 /* ------------------------------------------------------------------ */
 
-function useReveal() {
-  const ref = useRef(null);
+function useReveal(): [
+  React.RefObject<HTMLDivElement>,
+  boolean
+] {
+  const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
   useEffect(() => {
     const el = ref.current;
@@ -145,8 +174,24 @@ function useCountUp(target, active, decimals = 0, duration = 1400) {
 /* Small building blocks                                               */
 /* ------------------------------------------------------------------ */
 
-function Reveal({ as: Tag = "div", className = "", delay = 0, children, ...rest }) {
+
+type RevealProps<T extends ElementType = "div"> = {
+  as?: T;
+  children: ReactNode;
+  className?: string;
+  delay?: number;
+} & Omit<ComponentPropsWithoutRef<T>, "as" | "children" | "className">;
+
+function Reveal<T extends ElementType = "div">({
+  as,
+  children,
+  className = "",
+  delay = 0,
+  ...rest
+}: RevealProps<T>) {
+  const Tag = (as || "div") as ElementType;
   const [ref, visible] = useReveal();
+
   return (
     <Tag
       ref={ref}
