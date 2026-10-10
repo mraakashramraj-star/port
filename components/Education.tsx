@@ -6,7 +6,7 @@ import { EDUCATION_DATA } from "@/data/portfolioData";
 
 export default function Education() {
   return (
-    <section id="education" className="relative py-24 sm:py-32 bg-[#08090d]/60 border-t border-white/[0.06]">
+    <section id="education" className="relative py-24 sm:py-32 bg-[#08090d]/30 border-t border-white/[0.06] backdrop-blur-[1px]">
       {/* Background ambient lighting */}
       <div className="absolute top-1/2 right-1/4 w-96 h-96 bg-blue-500/[0.04] rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-10 left-1/4 w-96 h-96 bg-purple-500/[0.04] rounded-full blur-3xl pointer-events-none" />

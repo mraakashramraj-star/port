@@ -49,7 +49,7 @@ const CORE_FOCUS_AREAS = [
 
 export default function About() {
   return (
-    <section id="about" className="relative py-24 sm:py-32 bg-[#08090d]/60 border-t border-white/[0.06]">
+    <section id="about" className="relative py-24 sm:py-32 bg-[#08090d]/30 border-t border-white/[0.06] backdrop-blur-[1px]">
       {/* Elegant ambient glow blobs */}
       <div className="absolute top-1/4 left-0 w-96 h-96 bg-purple-500/[0.04] rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-1/3 right-0 w-96 h-96 bg-blue-500/[0.04] rounded-full blur-3xl pointer-events-none" />

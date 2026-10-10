@@ -14,7 +14,7 @@ const TECH_BADGE_STYLES: Record<string, string> = {
 
 export default function Experience() {
   return (
-    <section id="experience" className="relative py-24 sm:py-32 bg-[#08090d]/60 border-t border-white/[0.06]">
+    <section id="experience" className="relative py-24 sm:py-32 bg-[#08090d]/30 border-t border-white/[0.06] backdrop-blur-[1px]">
       {/* Ambient background light */}
       <div className="absolute top-1/2 left-1/3 w-96 h-96 bg-emerald-500/[0.03] rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-10 right-1/4 w-96 h-96 bg-blue-500/[0.03] rounded-full blur-3xl pointer-events-none" />

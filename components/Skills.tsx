@@ -104,7 +104,7 @@ export default function Skills() {
   });
 
   return (
-    <section id="skills" className="relative py-24 sm:py-32 bg-[#07080b]">
+    <section id="skills" className="relative py-24 sm:py-32 bg-[#07080b]/30 backdrop-blur-[1px] border-t border-white/[0.04]">
       {/* Background Ambient Lighting Blobs */}
       <div className="absolute top-1/3 right-0 w-96 h-96 bg-blue-500/[0.04] rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-10 left-10 w-96 h-96 bg-purple-500/[0.04] rounded-full blur-3xl pointer-events-none" />

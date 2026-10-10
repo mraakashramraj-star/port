@@ -104,7 +104,7 @@ export default function Projects() {
   });
 
   return (
-    <section id="projects" className="relative py-24 sm:py-32 bg-[#07080b]">
+    <section id="projects" className="relative py-24 sm:py-32 bg-[#07080b]/30 backdrop-blur-[1px] border-t border-white/[0.04]">
       {/* Ambient background lighting */}
       <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-500/[0.04] rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-500/[0.04] rounded-full blur-3xl pointer-events-none" />

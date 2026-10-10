@@ -7,7 +7,7 @@ import { TechIcon } from "./TechIcons";
 
 export default function Certifications() {
   return (
-    <section id="certifications" className="relative py-24 sm:py-32 bg-[#07080b]">
+    <section id="certifications" className="relative py-24 sm:py-32 bg-[#07080b]/30 backdrop-blur-[1px] border-t border-white/[0.04]">
       {/* Ambient background lights */}
       <div className="absolute top-1/3 left-1/4 w-96 h-96 bg-emerald-500/[0.03] rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-amber-500/[0.03] rounded-full blur-3xl pointer-events-none" />
