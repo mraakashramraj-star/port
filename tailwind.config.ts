@@ -4,18 +4,24 @@ const config: Config = {
   content: [
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./data/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
     extend: {
       colors: {
-        bg: "#07070A",
-        surface: "#111118",
-        purple: "#7C3AED",
-        blue: "#3B82F6",
-        gold: "#FACC15",
+        bg: "#07080b",
+        surface: "#0c0e17",
+        surfaceElevated: "#111420",
+        electricBlue: "#3b82f6",
+        neonViolet: "#8b5cf6",
+      },
+      fontFamily: {
+        sans: ["var(--font-inter)", "Inter", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "sans-serif"],
+        heading: ["var(--font-heading)", "Space Grotesk", "Inter", "sans-serif"],
       },
       borderRadius: {
-        xl2: "20px",
+        "3xl": "24px",
+        "4xl": "32px",
       },
     },
   },
