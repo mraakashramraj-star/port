@@ -154,3 +154,64 @@
   transform: scale(1.05);
   filter: brightness(1.15);
 }
+
+/* Authentic React Bits Solid Color Tech Wall Tiles matching uploaded reference image */
+.react-bits-tile {
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  box-shadow: 0 12px 28px -6px rgba(0, 0, 0, 0.55), inset 0 1px 1px rgba(255, 255, 255, 0.25);
+  transition: transform 0.25s ease, filter 0.25s ease;
+}
+
+/* Subtle diagonal split shadow across the tile like in React Bits reference image */
+.react-bits-tile::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.14) 0%, rgba(255, 255, 255, 0.02) 48%, rgba(0, 0, 0, 0.08) 52%, rgba(0, 0, 0, 0.22) 100%);
+  pointer-events: none;
+}
+
+.react-bits-tile:hover {
+  transform: scale(1.05);
+  filter: brightness(1.12);
+}
+
+.react-bits-tile-title {
+  position: absolute;
+  bottom: 16px;
+  left: 20px;
+  font-size: 15px;
+  font-weight: 900;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  line-height: 1;
+  pointer-events: none;
+}
+
+.react-bits-tile-badge {
+  position: absolute;
+  top: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 4px 10px;
+  border-radius: 9999px;
+  background: rgba(0, 0, 0, 0.28);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+  pointer-events: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
