@@ -222,8 +222,6 @@ const SOLID_REACT_BITS_TILES: SolidTileDef[] = [
 ];
 
 export default function Hero() {
-  const [wallMode, setWallMode] = useState<boolean>(false);
-
   // Generate solid color React Bits tiles matching uploaded reference screenshot
   const gridMotionItems = SOLID_REACT_BITS_TILES.map((tile) => (
     <div
@@ -290,7 +288,7 @@ export default function Hero() {
           direction="alternate"
           parallax={0.5}
           spotlight={0.7}
-          dim={wallMode ? 0.02 : 0.06}
+          dim={0.06}
           fade={0.15}
           grayscale={false}
           tileColor="#12131f"
@@ -304,11 +302,7 @@ export default function Hero() {
       </div>
 
       {/* Hero Foreground Content */}
-      <div
-        className={`relative z-10 max-w-3xl mx-auto px-4 text-center transition-all duration-500 pointer-events-none select-none ${
-          wallMode ? "opacity-0 scale-95" : "opacity-100 scale-100"
-        }`}
-      >
+      <div className="relative z-10 max-w-3xl mx-auto px-4 text-center pointer-events-none select-none">
         {/* Main Name Heading */}
         <h1 className="text-5xl sm:text-7xl md:text-8xl font-black text-white tracking-tight leading-none drop-shadow-[0_4px_28px_rgba(0,0,0,0.95)] mb-4 font-heading">
           {PERSONAL_INFO.fullName}
@@ -340,28 +334,6 @@ export default function Hero() {
             Download Resume
           </a>
         </div>
-      </div>
-
-      {/* Demo Content / Focus Mode Switch (Matches reference image bottom right) */}
-      <div className="fixed bottom-6 right-6 z-30 pointer-events-auto">
-        <button
-          onClick={() => setWallMode(!wallMode)}
-          className="flex items-center gap-2.5 px-4 py-2 rounded-2xl bg-[#14151e]/80 hover:bg-[#14151e] border border-white/15 text-xs font-semibold text-zinc-300 backdrop-blur-xl shadow-2xl transition-all"
-          title="Toggle foreground text to explore full wall"
-        >
-          <span>Demo Content</span>
-          <div
-            className={`w-8 h-4.5 rounded-full p-0.5 transition-colors ${
-              wallMode ? "bg-white" : "bg-zinc-700"
-            }`}
-          >
-            <div
-              className={`w-3.5 h-3.5 rounded-full transition-transform ${
-                wallMode ? "translate-x-3.5 bg-black" : "translate-x-0 bg-white"
-              }`}
-            />
-          </div>
-        </button>
       </div>
     </section>
   );
