@@ -78,17 +78,17 @@ export default function Navbar() {
             <ellipse cx="12" cy="12" rx="9.5" ry="3.8" transform="rotate(90 12 12)" />
           </svg>
           <span className="text-white font-bold tracking-tight text-sm sm:text-base font-heading">
-            React Bits
+            {PERSONAL_INFO.fullName}
           </span>
         </button>
 
-        {/* Center / Right Navigation Links matching React Bits */}
-        <nav className="flex items-center gap-6 sm:gap-7 text-sm font-medium text-zinc-400 ml-auto mr-4 sm:mr-5">
+        {/* Center / Right Navigation Links */}
+        <nav className="flex items-center gap-5 sm:gap-7 text-sm font-medium text-zinc-400 ml-auto mr-3 sm:mr-5">
           <button
             onClick={() => scrollTo("projects")}
             className="hover:text-white transition-colors"
           >
-            Features
+            Projects
           </button>
           <button
             onClick={() => scrollTo("about")}
@@ -96,9 +96,15 @@ export default function Navbar() {
           >
             About
           </button>
+          <button
+            onClick={() => scrollTo("contact")}
+            className="hidden sm:inline hover:text-white transition-colors"
+          >
+            Contact
+          </button>
         </nav>
 
-        {/* Far-Right White Pill Action Button (Matches 'Sign up' pill in React Bits) */}
+        {/* Far-Right White Pill Action Button */}
         <div className="flex items-center gap-2">
           <a
             href={PERSONAL_INFO.resumePath}
@@ -108,7 +114,7 @@ export default function Navbar() {
             className="inline-flex items-center justify-center px-4 sm:px-5 py-2 text-xs sm:text-sm font-bold text-black bg-white hover:bg-zinc-100 rounded-xl shadow-[0_4px_16px_rgba(255,255,255,0.2)] transition-all duration-200 hover:scale-[1.02] active:scale-95"
             id="nav-resume-btn"
           >
-            <span>Sign up</span>
+            <span>Resume</span>
           </a>
         </div>
       </div>

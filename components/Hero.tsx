@@ -303,27 +303,30 @@ export default function Hero() {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,transparent_50%,rgba(0,0,0,0.85)_100%)] pointer-events-none" />
       </div>
 
-      {/* Hero Foreground Content — MATCHES REFERENCE SCREENSHOT EXACTLY */}
+      {/* Hero Foreground Content */}
       <div
-        className={`relative z-10 max-w-2xl mx-auto px-4 text-center transition-all duration-500 pointer-events-none select-none ${
+        className={`relative z-10 max-w-3xl mx-auto px-4 text-center transition-all duration-500 pointer-events-none select-none ${
           wallMode ? "opacity-0 scale-95" : "opacity-100 scale-100"
         }`}
       >
-        {/* Main Headline matching reference screenshot */}
-        <h1 className="text-5xl sm:text-6xl md:text-7xl font-extrabold text-white tracking-tight leading-[1.1] drop-shadow-[0_4px_28px_rgba(0,0,0,0.9)] mb-8 font-heading">
-          A wall of work that moves
-          <br />
-          with you
+        {/* Main Name Heading */}
+        <h1 className="text-5xl sm:text-7xl md:text-8xl font-black text-white tracking-tight leading-none drop-shadow-[0_4px_28px_rgba(0,0,0,0.95)] mb-4 font-heading">
+          {PERSONAL_INFO.fullName}
         </h1>
 
-        {/* Action Buttons matching reference screenshot: Get started & Learn more */}
-        <div className="flex items-center justify-center gap-3.5 pointer-events-auto">
+        {/* Subtitle requested by user */}
+        <p className="text-lg sm:text-2xl font-medium text-zinc-100 max-w-2xl mx-auto mb-8 drop-shadow-[0_2px_18px_rgba(0,0,0,0.95)] leading-relaxed">
+          IT student and full-stack developer passionate about building intuitive web applications and practical software solutions.
+        </p>
+
+        {/* Action Buttons */}
+        <div className="flex items-center justify-center gap-3.5 sm:gap-4 pointer-events-auto">
           <button
             onClick={() => scrollTo("projects")}
-            className="px-6 py-2.5 sm:px-7 sm:py-3 text-sm sm:text-base font-bold text-black bg-white hover:bg-zinc-100 rounded-2xl shadow-[0_6px_25px_rgba(0,0,0,0.6)] transition-all duration-200 hover:scale-105 active:scale-95"
+            className="px-7 py-3 text-sm sm:text-base font-bold text-black bg-white hover:bg-zinc-100 rounded-2xl shadow-[0_8px_25px_rgba(0,0,0,0.7)] transition-all duration-200 hover:scale-105 active:scale-95"
             id="hero-explore-btn"
           >
-            Get started
+            Explore My Work
           </button>
 
           <a
@@ -331,10 +334,10 @@ export default function Hero() {
             download="Aakash-MR-Resume.pdf"
             target="_blank"
             rel="noopener noreferrer"
-            className="px-6 py-2.5 sm:px-7 sm:py-3 text-sm sm:text-base font-semibold text-white/95 hover:text-white bg-[#22232a]/60 hover:bg-[#22232a]/85 border border-white/15 backdrop-blur-md rounded-2xl shadow-[0_6px_25px_rgba(0,0,0,0.6)] transition-all duration-200 hover:scale-105 active:scale-95"
+            className="px-7 py-3 text-sm sm:text-base font-semibold text-white hover:text-white bg-[#181920]/65 hover:bg-[#181920]/90 border border-white/20 backdrop-blur-md rounded-2xl shadow-[0_8px_25px_rgba(0,0,0,0.7)] transition-all duration-200 hover:scale-105 active:scale-95"
             id="hero-resume-btn"
           >
-            Learn more
+            Download Resume
           </a>
         </div>
       </div>
