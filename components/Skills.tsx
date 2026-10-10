@@ -8,7 +8,6 @@ import {
   Database,
   BrainCircuit,
   Wrench,
-  Check,
   Search,
 } from "lucide-react";
 import { SKILL_CATEGORIES } from "@/data/portfolioData";
@@ -41,45 +40,45 @@ export default function Skills() {
   return (
     <section id="skills" className="relative py-24 sm:py-32 bg-[#07080b]">
       {/* Background Lighting Elements */}
-      <div className="absolute top-1/3 right-0 w-80 h-80 bg-violet-600/5 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-10 left-10 w-80 h-80 bg-blue-600/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-1/3 right-0 w-80 h-80 bg-white/[0.02] rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-10 left-10 w-80 h-80 bg-white/[0.02] rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
           <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-violet-500/10 border border-violet-500/20 text-violet-400 text-xs font-semibold uppercase tracking-wider mb-3">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.06] border border-white/15 text-zinc-300 text-xs font-semibold uppercase tracking-wider mb-3">
               <span>Technical Competencies</span>
             </div>
             <h2 className="text-3xl sm:text-5xl font-bold tracking-tight text-white font-heading">
               Skills & Technologies
             </h2>
-            <p className="text-sm sm:text-base text-slate-400 mt-2 max-w-xl">
+            <p className="text-sm sm:text-base text-zinc-400 mt-2 max-w-xl">
               Organized technical stack spanning languages, user interfaces, backend services, databases, and core engineering concepts.
             </p>
           </div>
 
           {/* Quick Search Input */}
           <div className="relative w-full md:w-64">
-            <Search className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500" />
+            <Search className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-zinc-500" />
             <input
               type="text"
               placeholder="Filter skill or tool..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full bg-white/[0.03] border border-white/[0.08] focus:border-blue-500/50 rounded-xl pl-9 pr-3.5 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:ring-1 focus:ring-blue-500/40 transition"
+              className="w-full bg-white/[0.03] border border-white/[0.1] focus:border-white/50 rounded-xl pl-9 pr-3.5 py-2 text-xs text-white placeholder-zinc-500 focus:outline-none focus:ring-1 focus:ring-white/20 transition"
             />
           </div>
         </div>
 
-        {/* Category Pills Filter */}
+        {/* Category Pills Filter (Black & White) */}
         <div className="flex items-center gap-2 overflow-x-auto pb-4 mb-10 scrollbar-none">
           <button
             onClick={() => setSelectedCategory("all")}
-            className={`px-4 py-2 rounded-full text-xs font-medium whitespace-nowrap transition-all ${
+            className={`px-4 py-2 rounded-full text-xs font-semibold whitespace-nowrap transition-all ${
               selectedCategory === "all"
-                ? "bg-blue-600 text-white shadow-lg shadow-blue-600/20"
-                : "bg-white/[0.03] text-slate-400 hover:text-white border border-white/[0.06] hover:border-white/[0.12]"
+                ? "bg-white text-black shadow-lg shadow-white/10"
+                : "bg-white/[0.03] text-zinc-400 hover:text-white border border-white/[0.08] hover:border-white/20"
             }`}
           >
             All Categories ({SKILL_CATEGORIES.reduce((acc, cat) => acc + cat.skills.length, 0)})
@@ -91,10 +90,10 @@ export default function Skills() {
               <button
                 key={cat.title}
                 onClick={() => setSelectedCategory(cat.title)}
-                className={`flex items-center gap-2 px-4 py-2 rounded-full text-xs font-medium whitespace-nowrap transition-all ${
+                className={`flex items-center gap-2 px-4 py-2 rounded-full text-xs font-semibold whitespace-nowrap transition-all ${
                   isSelected
-                    ? "bg-blue-600 text-white shadow-lg shadow-blue-600/20"
-                    : "bg-white/[0.03] text-slate-400 hover:text-white border border-white/[0.06] hover:border-white/[0.12]"
+                    ? "bg-white text-black shadow-lg shadow-white/10"
+                    : "bg-white/[0.03] text-zinc-400 hover:text-white border border-white/[0.08] hover:border-white/20"
                 }`}
               >
                 <Icon className="w-3.5 h-3.5" />
@@ -117,25 +116,25 @@ export default function Skills() {
             return (
               <div
                 key={group.title}
-                className="group p-6 rounded-3xl bg-[#0c0e17]/80 hover:bg-[#0f121d] border border-white/[0.06] hover:border-blue-500/30 transition-all duration-300 shadow-xl flex flex-col justify-between"
+                className="group p-6 rounded-3xl bg-[#0c0e14]/90 hover:bg-[#10121a] border border-white/[0.08] hover:border-white/25 transition-all duration-300 shadow-xl flex flex-col justify-between"
               >
                 <div>
                   {/* Category Header */}
                   <div className="flex items-center justify-between gap-3 mb-4">
                     <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-2xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400 group-hover:scale-105 transition-transform">
+                      <div className="w-10 h-10 rounded-2xl bg-white/[0.06] border border-white/10 flex items-center justify-center text-white group-hover:scale-105 transition-transform">
                         <Icon className="w-5 h-5" />
                       </div>
                       <div>
                         <h3 className="text-base font-bold text-white font-heading">{group.title}</h3>
-                        <p className="text-[11px] text-slate-400 font-mono">
+                        <p className="text-[11px] text-zinc-400 font-mono">
                           {displayedSkills.length} competencies
                         </p>
                       </div>
                     </div>
                   </div>
 
-                  <p className="text-xs text-slate-400 mb-5 leading-relaxed">
+                  <p className="text-xs text-zinc-400 mb-5 leading-relaxed">
                     {group.description}
                   </p>
 
@@ -146,20 +145,20 @@ export default function Skills() {
                         key={skill.name}
                         className={`flex items-center gap-2.5 px-3 py-2 rounded-xl transition-all duration-200 border ${
                           skill.highlight
-                            ? "bg-white/[0.04] border-white/[0.1] hover:border-blue-500/40 hover:bg-blue-500/10"
-                            : "bg-white/[0.02] border-white/[0.05] hover:border-white/[0.12] hover:bg-white/[0.04]"
+                            ? "bg-white/[0.05] border-white/[0.12] hover:border-white/30 hover:bg-white/[0.08]"
+                            : "bg-white/[0.02] border-white/[0.06] hover:border-white/[0.15] hover:bg-white/[0.04]"
                         }`}
                       >
-                        <TechIcon name={skill.icon} className="w-4 h-4 flex-shrink-0" />
-                        <span className="text-xs font-medium text-slate-200 truncate">{skill.name}</span>
+                        <TechIcon name={skill.icon} className="w-4 h-4 flex-shrink-0 text-white" monochrome={true} />
+                        <span className="text-xs font-medium text-zinc-200 truncate">{skill.name}</span>
                       </div>
                     ))}
                   </div>
                 </div>
 
-                <div className="mt-6 pt-4 border-t border-white/[0.04] flex items-center justify-between text-[11px] text-slate-500">
+                <div className="mt-6 pt-4 border-t border-white/[0.04] flex items-center justify-between text-[11px] text-zinc-500 font-mono">
                   <span>Verified academic & project usage</span>
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+                  <span className="w-1.5 h-1.5 rounded-full bg-white" />
                 </div>
               </div>
             );

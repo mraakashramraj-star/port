@@ -69,7 +69,7 @@
   padding: 0 1em;
 }
 
-/* Custom styling for tech stack card nodes inside tiles */
+/* Black & White Monochrome Tech Stack Card Nodes */
 .tech-tile-node {
   width: 100%;
   height: 100%;
@@ -79,14 +79,17 @@
   justify-content: center;
   gap: 8px;
   padding: 12px;
-  background: linear-gradient(145deg, rgba(22, 24, 34, 0.85), rgba(13, 15, 22, 0.95));
+  background: linear-gradient(145deg, rgba(18, 18, 20, 0.95), rgba(8, 8, 10, 0.98));
   border-radius: inherit;
-  box-shadow: 0 8px 24px -6px rgba(0, 0, 0, 0.45);
+  box-shadow: 0 8px 24px -6px rgba(0, 0, 0, 0.7);
   transition: all 0.25s ease;
+  border: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .tech-tile-node:hover {
   transform: scale(1.04);
+  border-color: rgba(255, 255, 255, 0.22);
+  box-shadow: 0 12px 28px -4px rgba(255, 255, 255, 0.08);
 }
 
 .tech-tile-icon-wrap {
@@ -97,21 +100,21 @@
   align-items: center;
   justify-content: center;
   background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  color: #ffffff;
 }
 
 .tech-tile-name {
   font-size: 13px;
   font-weight: 600;
   letter-spacing: 0.3px;
-  color: #f1f5f9;
+  color: #ffffff;
 }
 
 .tech-tile-category {
   font-size: 10px;
   text-transform: uppercase;
   letter-spacing: 1.2px;
-  color: #94a3b8;
-  opacity: 0.8;
+  color: #a1a1aa;
 }
