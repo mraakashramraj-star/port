@@ -21,7 +21,6 @@ const CORE_FOCUS_AREAS = [
     icon: Layers,
     title: "Full-Stack Web Engineering",
     description: "Developing modern end-to-end applications with modular frontend components and clean RESTful endpoints.",
-    accentColor: "blue",
     iconBg: "bg-blue-500/15 text-blue-400 border-blue-500/30",
     hoverBorder: "hover:border-blue-500/40",
   },
@@ -29,7 +28,6 @@ const CORE_FOCUS_AREAS = [
     icon: Server,
     title: "Database-Driven Systems",
     description: "Structuring reliable schemas and relational workflows with MySQL, SQLite, and MongoDB document stores.",
-    accentColor: "emerald",
     iconBg: "bg-emerald-500/15 text-emerald-400 border-emerald-500/30",
     hoverBorder: "hover:border-emerald-500/40",
   },
@@ -37,7 +35,6 @@ const CORE_FOCUS_AREAS = [
     icon: Sparkles,
     title: "AI & Practical NLP",
     description: "Integrating machine learning pipelines and transformer models from Hugging Face into usable web interfaces.",
-    accentColor: "purple",
     iconBg: "bg-purple-500/15 text-purple-400 border-purple-500/30",
     hoverBorder: "hover:border-purple-500/40",
   },
@@ -45,45 +42,8 @@ const CORE_FOCUS_AREAS = [
     icon: Cpu,
     title: "Intuitive UI/UX Development",
     description: "Translating functional requirements into ergonomic, accessible, and responsive user experiences.",
-    accentColor: "rose",
     iconBg: "bg-rose-500/15 text-rose-400 border-rose-500/30",
     hoverBorder: "hover:border-rose-500/40",
-  },
-];
-
-// 4 Elegant Dual-Tone Cards matching Image 5 aesthetics exactly
-const STAT_HIGHLIGHT_CARDS = [
-  {
-    metric: "8.02",
-    label: "ACADEMIC DISTINCTION",
-    description: "Information Technology undergraduate at PSNA CET with consistent first-class distinction.",
-    // Lilac / Soft Purple dual tone
-    gradient: "from-[#986da3] via-[#a376ae] to-[#af81bb]",
-    shadow: "shadow-[0_15px_35px_rgba(152,109,163,0.3)]",
-  },
-  {
-    metric: "15+",
-    label: "CORE TECHNOLOGIES",
-    description: "React, Next.js, Python, Node.js, FastAPI, MySQL, Tailwind & Cloud infrastructure.",
-    // Sky Blue dual tone
-    gradient: "from-[#4d86cc] via-[#5991d5] to-[#6aa1df]",
-    shadow: "shadow-[0_15px_35px_rgba(77,134,204,0.3)]",
-  },
-  {
-    metric: "100%",
-    label: "PRACTICAL IMPLEMENTATION",
-    description: "Production-ready architectures, verifiable RESTful endpoints & zero simulated workflows.",
-    // Coral / Rose dual tone
-    gradient: "from-[#e35467] via-[#eb5f72] to-[#f47082]",
-    shadow: "shadow-[0_15px_35px_rgba(227,84,103,0.3)]",
-  },
-  {
-    metric: "4+",
-    label: "FEATURED SYSTEMS",
-    description: "AI sentiment diagnosis, hospital outpatient OP, fitness ledger & medical consultation portals.",
-    // Mint / Emerald Green dual tone
-    gradient: "from-[#4faa7b] via-[#5ab685] to-[#6bc394]",
-    shadow: "shadow-[0_15px_35px_rgba(79,170,123,0.3)]",
   },
 ];
 
@@ -191,6 +151,18 @@ export default function About() {
                 </div>
               </div>
             </div>
+
+            {/* Academic Snapshot Card */}
+            <div className="p-5 rounded-2xl bg-gradient-to-r from-purple-500/[0.08] via-blue-500/[0.05] to-transparent border border-purple-500/20 flex items-center justify-between shadow-lg">
+              <div>
+                <p className="text-xs uppercase tracking-wider text-purple-300 font-semibold font-mono">Undergraduate CGPA</p>
+                <p className="text-2xl font-bold text-white mt-1 font-heading">{PERSONAL_INFO.currentEducation.cgpa}</p>
+              </div>
+              <div className="text-right">
+                <p className="text-xs uppercase tracking-wider text-blue-300 font-semibold font-mono">Batch / Term</p>
+                <p className="text-sm font-semibold text-zinc-200 mt-1 font-mono">2023 – 2027</p>
+              </div>
+            </div>
           </div>
 
           {/* Right Column: Narrative Biography & Focus Areas (7 cols) */}
@@ -244,46 +216,6 @@ export default function About() {
                 })}
               </div>
             </div>
-          </div>
-        </div>
-
-        {/* 4 Elegant Dual-Tone Cards Showcase (Inspired by Image 5) */}
-        <div className="mt-16 sm:mt-20">
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6">
-            {STAT_HIGHLIGHT_CARDS.map((card, idx) => (
-              <div
-                key={idx}
-                className={`group relative rounded-3xl p-7 sm:p-9 bg-gradient-to-r ${card.gradient} ${card.shadow} overflow-hidden transition-all duration-300 hover:scale-[1.02] hover:brightness-105`}
-              >
-                {/* Subtle right-side tonal split matching Image 5 */}
-                <div className="absolute inset-y-0 right-0 w-[46%] bg-white/[0.05] pointer-events-none" />
-
-                {/* Delicate interior sheen line */}
-                <div className="absolute inset-0 bg-gradient-to-b from-white/[0.12] via-transparent to-black/[0.08] pointer-events-none" />
-
-                <div className="relative z-10 flex flex-col justify-between h-full">
-                  {/* Huge Bold White Number */}
-                  <div className="text-5xl sm:text-6xl md:text-7xl font-black text-white tracking-tight leading-none drop-shadow-sm mb-4 font-heading">
-                    {card.metric}
-                  </div>
-
-                  {/* Horizontal Divider Line & Uppercase Section Label */}
-                  <div>
-                    <div className="flex items-center gap-2.5 mb-2.5">
-                      <span className="w-6 h-[2px] bg-white/90" />
-                      <span className="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-white">
-                        {card.label}
-                      </span>
-                    </div>
-
-                    {/* Subtitle Description */}
-                    <p className="text-xs sm:text-sm font-medium text-white/95 leading-relaxed">
-                      {card.description}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            ))}
           </div>
         </div>
       </div>

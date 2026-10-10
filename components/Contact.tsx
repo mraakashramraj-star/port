@@ -11,6 +11,7 @@ import {
   ExternalLink,
   MessageSquare,
   AlertCircle,
+  Sparkles,
 } from "lucide-react";
 import { PERSONAL_INFO } from "@/data/portfolioData";
 
@@ -52,7 +53,6 @@ export default function Contact() {
     setIsSubmitting(true);
     setStatusMessage(null);
 
-    // Form fallback: generate mailto URI to launch client mail compose with entered fields
     try {
       const mailtoSubject = encodeURIComponent(`[Portfolio] ${formData.subject}`);
       const mailtoBody = encodeURIComponent(
@@ -60,7 +60,6 @@ export default function Contact() {
       );
       const mailtoUrl = `mailto:${PERSONAL_INFO.email}?subject=${mailtoSubject}&body=${mailtoBody}`;
 
-      // Open user's default email client
       window.location.href = mailtoUrl;
 
       setStatusMessage({
@@ -68,7 +67,6 @@ export default function Contact() {
         text: "Opening your default email application with this message drafted. You can also email me directly at " + PERSONAL_INFO.email,
       });
 
-      // Reset form after short delay
       setTimeout(() => {
         setFormData({ name: "", email: "", subject: "", message: "" });
         setIsSubmitting(false);
@@ -91,13 +89,14 @@ export default function Contact() {
   return (
     <section id="contact" className="relative py-24 sm:py-32 bg-[#07080b]">
       {/* Background illumination */}
-      <div className="absolute top-1/3 right-1/4 w-96 h-96 bg-white/[0.02] rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-1/3 right-1/4 w-96 h-96 bg-blue-500/[0.04] rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-1/4 left-1/4 w-96 h-96 bg-purple-500/[0.04] rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
         <div className="max-w-3xl mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.06] border border-white/15 text-zinc-300 text-xs font-semibold uppercase tracking-wider mb-3">
-            <MessageSquare className="w-3.5 h-3.5 text-white" />
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gradient-to-r from-blue-500/15 via-indigo-500/15 to-purple-500/15 border border-blue-500/30 text-blue-300 text-xs font-semibold uppercase tracking-wider mb-3">
+            <Sparkles className="w-3.5 h-3.5 text-blue-400" />
             <span>Direct Communication</span>
           </div>
           <h2 className="text-3xl sm:text-5xl font-bold tracking-tight text-white mb-4 font-heading">
@@ -112,57 +111,57 @@ export default function Contact() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
           {/* Left Column: Direct Contact Info (5 cols) */}
           <div className="lg:col-span-5 space-y-6">
-            <div className="p-8 rounded-3xl bg-[#0c0e14]/90 border border-white/[0.08] shadow-2xl space-y-6">
+            <div className="p-8 rounded-3xl bg-[#0c0e14]/90 border border-blue-500/20 hover:border-blue-500/40 shadow-2xl hover:shadow-[0_12px_45px_rgba(59,130,246,0.12)] transition-all duration-300 space-y-6">
               <h3 className="text-xl font-bold text-white font-heading">
                 Contact Information
               </h3>
 
               {/* Email row with quick copy button */}
-              <div className="p-4 rounded-2xl bg-white/[0.02] border border-white/[0.06] space-y-2">
-                <span className="text-[11px] font-mono uppercase tracking-wider text-zinc-400 block">
+              <div className="p-4 rounded-2xl bg-blue-500/[0.05] border border-blue-500/20 space-y-2">
+                <span className="text-[11px] font-mono uppercase tracking-wider text-blue-300 block font-semibold">
                   Email Address
                 </span>
                 <div className="flex items-center justify-between gap-2">
                   <a
                     href={`mailto:${PERSONAL_INFO.email}`}
-                    className="text-sm font-semibold text-white hover:text-zinc-300 transition truncate"
+                    className="text-sm font-semibold text-white hover:text-blue-300 transition truncate"
                   >
                     {PERSONAL_INFO.email}
                   </a>
                   <button
                     onClick={copyEmailToClipboard}
-                    className="p-2 rounded-xl bg-white/[0.04] hover:bg-white/[0.08] text-zinc-300 hover:text-white border border-white/[0.08] transition flex items-center gap-1 text-xs"
+                    className="p-2 rounded-xl bg-blue-500/15 hover:bg-blue-500/25 text-blue-300 hover:text-white border border-blue-500/30 transition flex items-center gap-1 text-xs"
                     aria-label="Copy Email"
                     title="Copy Email to Clipboard"
                   >
                     {copiedEmail ? (
-                      <Check className="w-3.5 h-3.5 text-white" />
+                      <Check className="w-3.5 h-3.5 text-emerald-400" />
                     ) : (
                       <Copy className="w-3.5 h-3.5" />
                     )}
                   </button>
                 </div>
                 {copiedEmail && (
-                  <p className="text-[11px] font-mono text-white pt-1">
+                  <p className="text-[11px] font-mono text-emerald-400 pt-1">
                     ✓ Email copied to clipboard!
                   </p>
                 )}
               </div>
 
               {/* Location row */}
-              <div className="p-4 rounded-2xl bg-white/[0.02] border border-white/[0.06] space-y-1">
-                <span className="text-[11px] font-mono uppercase tracking-wider text-zinc-400 block">
+              <div className="p-4 rounded-2xl bg-emerald-500/[0.05] border border-emerald-500/20 space-y-1">
+                <span className="text-[11px] font-mono uppercase tracking-wider text-emerald-300 block font-semibold">
                   Location
                 </span>
                 <p className="text-sm font-semibold text-white flex items-center gap-2">
-                  <MapPin className="w-4 h-4 text-zinc-300" />
+                  <MapPin className="w-4 h-4 text-emerald-400" />
                   <span>{PERSONAL_INFO.location}</span>
                 </p>
               </div>
 
               {/* Verified Profiles */}
               <div className="pt-4 border-t border-white/[0.06] space-y-3">
-                <span className="text-[11px] font-mono uppercase tracking-wider text-zinc-400 block">
+                <span className="text-[11px] font-mono uppercase tracking-wider text-purple-300 block font-semibold">
                   Profiles & Repositories
                 </span>
                 <div className="flex flex-col gap-2.5">
@@ -170,26 +169,26 @@ export default function Contact() {
                     href={PERSONAL_INFO.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center justify-between p-3 rounded-xl bg-white/[0.02] hover:bg-white/[0.06] border border-white/[0.05] hover:border-white/[0.12] text-xs font-medium text-zinc-300 hover:text-white transition group"
+                    className="flex items-center justify-between p-3.5 rounded-xl bg-purple-500/[0.05] hover:bg-purple-500/[0.12] border border-purple-500/20 hover:border-purple-500/40 text-xs font-medium text-purple-200 hover:text-white transition group shadow-sm"
                   >
                     <div className="flex items-center gap-2.5">
-                      <Github className="w-4 h-4" />
+                      <Github className="w-4 h-4 text-purple-400" />
                       <span>github.com/mraakashramraj-star</span>
                     </div>
-                    <ExternalLink className="w-3.5 h-3.5 text-zinc-400 group-hover:text-white transition" />
+                    <ExternalLink className="w-3.5 h-3.5 text-purple-400 group-hover:text-white transition" />
                   </a>
 
                   <a
                     href={PERSONAL_INFO.linkedin}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center justify-between p-3 rounded-xl bg-white/[0.02] hover:bg-white/[0.06] border border-white/[0.05] hover:border-white/[0.12] text-xs font-medium text-zinc-300 hover:text-white transition group"
+                    className="flex items-center justify-between p-3.5 rounded-xl bg-blue-500/[0.05] hover:bg-blue-500/[0.12] border border-blue-500/20 hover:border-blue-500/40 text-xs font-medium text-blue-200 hover:text-white transition group shadow-sm"
                   >
                     <div className="flex items-center gap-2.5">
-                      <Linkedin className="w-4 h-4 text-zinc-300" />
+                      <Linkedin className="w-4 h-4 text-blue-400" />
                       <span>linkedin.com/in/aakash-m-r-4080942a2</span>
                     </div>
-                    <ExternalLink className="w-3.5 h-3.5 text-zinc-400 group-hover:text-white transition" />
+                    <ExternalLink className="w-3.5 h-3.5 text-blue-400 group-hover:text-white transition" />
                   </a>
                 </div>
               </div>
@@ -198,9 +197,9 @@ export default function Contact() {
 
           {/* Right Column: Interactive Contact Form (7 cols) */}
           <div className="lg:col-span-7">
-            <div className="p-8 sm:p-10 rounded-3xl bg-[#0c0e14]/90 border border-white/[0.08] shadow-2xl">
+            <div className="p-8 sm:p-10 rounded-3xl bg-[#0c0e14]/90 border border-purple-500/20 hover:border-purple-500/40 shadow-2xl hover:shadow-[0_12px_45px_rgba(168,85,247,0.12)] transition-all duration-300">
               <h3 className="text-xl font-bold text-white mb-6 font-heading flex items-center gap-2">
-                <Send className="w-4 h-4 text-white" />
+                <Send className="w-4 h-4 text-purple-400" />
                 <span>Send a Message</span>
               </h3>
 
@@ -209,7 +208,7 @@ export default function Contact() {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                   <div>
                     <label htmlFor="name" className="block text-xs font-medium text-zinc-300 mb-2">
-                      Your Name <span className="text-white">*</span>
+                      Your Name <span className="text-purple-400">*</span>
                     </label>
                     <input
                       id="name"
@@ -221,16 +220,16 @@ export default function Contact() {
                         if (errors.name) setErrors({ ...errors, name: "" });
                       }}
                       disabled={isSubmitting}
-                      className={`w-full bg-white/[0.03] border rounded-xl px-4 py-3 text-sm text-white placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-white/30 transition ${
-                        errors.name ? "border-zinc-400" : "border-white/[0.1] focus:border-white/60"
+                      className={`w-full bg-white/[0.03] border rounded-xl px-4 py-3 text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-500/20 transition ${
+                        errors.name ? "border-rose-500" : "border-white/[0.1]"
                       }`}
                     />
-                    {errors.name && <p className="text-[11px] text-zinc-300 mt-1.5">{errors.name}</p>}
+                    {errors.name && <p className="text-[11px] text-rose-400 mt-1.5">{errors.name}</p>}
                   </div>
 
                   <div>
                     <label htmlFor="email" className="block text-xs font-medium text-zinc-300 mb-2">
-                      Email Address <span className="text-white">*</span>
+                      Email Address <span className="text-purple-400">*</span>
                     </label>
                     <input
                       id="email"
@@ -242,18 +241,18 @@ export default function Contact() {
                         if (errors.email) setErrors({ ...errors, email: "" });
                       }}
                       disabled={isSubmitting}
-                      className={`w-full bg-white/[0.03] border rounded-xl px-4 py-3 text-sm text-white placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-white/30 transition ${
-                        errors.email ? "border-zinc-400" : "border-white/[0.1] focus:border-white/60"
+                      className={`w-full bg-white/[0.03] border rounded-xl px-4 py-3 text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-500/20 transition ${
+                        errors.email ? "border-rose-500" : "border-white/[0.1]"
                       }`}
                     />
-                    {errors.email && <p className="text-[11px] text-zinc-300 mt-1.5">{errors.email}</p>}
+                    {errors.email && <p className="text-[11px] text-rose-400 mt-1.5">{errors.email}</p>}
                   </div>
                 </div>
 
                 {/* Subject Field */}
                 <div>
                   <label htmlFor="subject" className="block text-xs font-medium text-zinc-300 mb-2">
-                    Subject <span className="text-white">*</span>
+                    Subject <span className="text-purple-400">*</span>
                   </label>
                   <input
                     id="subject"
@@ -265,17 +264,17 @@ export default function Contact() {
                       if (errors.subject) setErrors({ ...errors, subject: "" });
                     }}
                     disabled={isSubmitting}
-                    className={`w-full bg-white/[0.03] border rounded-xl px-4 py-3 text-sm text-white placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-white/30 transition ${
-                      errors.subject ? "border-zinc-400" : "border-white/[0.1] focus:border-white/60"
+                    className={`w-full bg-white/[0.03] border rounded-xl px-4 py-3 text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-500/20 transition ${
+                      errors.subject ? "border-rose-500" : "border-white/[0.1]"
                     }`}
                   />
-                  {errors.subject && <p className="text-[11px] text-zinc-300 mt-1.5">{errors.subject}</p>}
+                  {errors.subject && <p className="text-[11px] text-rose-400 mt-1.5">{errors.subject}</p>}
                 </div>
 
                 {/* Message Field */}
                 <div>
                   <label htmlFor="message" className="block text-xs font-medium text-zinc-300 mb-2">
-                    Message <span className="text-white">*</span>
+                    Message <span className="text-purple-400">*</span>
                   </label>
                   <textarea
                     id="message"
@@ -287,11 +286,11 @@ export default function Contact() {
                       if (errors.message) setErrors({ ...errors, message: "" });
                     }}
                     disabled={isSubmitting}
-                    className={`w-full bg-white/[0.03] border rounded-xl p-4 text-sm text-white placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-white/30 resize-none transition ${
-                      errors.message ? "border-zinc-400" : "border-white/[0.1] focus:border-white/60"
+                    className={`w-full bg-white/[0.03] border rounded-xl p-4 text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-500/20 resize-none transition ${
+                      errors.message ? "border-rose-500" : "border-white/[0.1]"
                     }`}
                   />
-                  {errors.message && <p className="text-[11px] text-zinc-300 mt-1.5">{errors.message}</p>}
+                  {errors.message && <p className="text-[11px] text-rose-400 mt-1.5">{errors.message}</p>}
                 </div>
 
                 {/* Status Message Feedback */}
@@ -299,24 +298,24 @@ export default function Contact() {
                   <div
                     className={`p-4 rounded-xl text-xs flex items-start gap-2.5 ${
                       statusMessage.type === "success"
-                        ? "bg-white/[0.08] border border-white/20 text-white"
-                        : "bg-white/[0.05] border border-white/10 text-zinc-300"
+                        ? "bg-emerald-500/15 border border-emerald-500/30 text-emerald-200"
+                        : "bg-rose-500/15 border border-rose-500/30 text-rose-200"
                     }`}
                   >
                     {statusMessage.type === "success" ? (
-                      <Check className="w-4 h-4 text-white flex-shrink-0 mt-0.5" />
+                      <Check className="w-4 h-4 text-emerald-400 flex-shrink-0 mt-0.5" />
                     ) : (
-                      <AlertCircle className="w-4 h-4 text-zinc-300 flex-shrink-0 mt-0.5" />
+                      <AlertCircle className="w-4 h-4 text-rose-400 flex-shrink-0 mt-0.5" />
                     )}
                     <p className="leading-relaxed">{statusMessage.text}</p>
                   </div>
                 )}
 
-                {/* Submit Button (Solid White with Black Text) */}
+                {/* Submit Button (Vibrant Gradient CTA) */}
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3.5 text-sm font-semibold text-black bg-white hover:bg-zinc-200 rounded-xl shadow-lg shadow-white/10 transition-all duration-200 hover:-translate-y-0.5 disabled:opacity-60 disabled:pointer-events-none focus:outline-none focus:ring-2 focus:ring-white"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3.5 text-sm font-bold text-white bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 rounded-xl shadow-lg shadow-blue-500/25 transition-all duration-200 hover:scale-[1.01] active:scale-95 disabled:opacity-60 disabled:pointer-events-none focus:outline-none focus:ring-2 focus:ring-purple-400"
                 >
                   <Send className="w-4 h-4" />
                   <span>{isSubmitting ? "Drafting Message..." : "Submit Message"}</span>

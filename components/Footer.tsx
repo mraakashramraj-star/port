@@ -21,7 +21,7 @@ export default function Footer() {
           {/* Brand & Title */}
           <div className="flex flex-col items-center md:items-start text-center md:text-left space-y-1">
             <div className="flex items-center gap-2">
-              <div className="w-8 h-8 rounded-lg bg-white/[0.08] border border-white/20 flex items-center justify-center text-white">
+              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500/20 to-purple-500/20 border border-blue-400/30 flex items-center justify-center text-blue-300">
                 <Code2 className="w-4 h-4" />
               </div>
               <h3 className="text-xl font-bold text-white font-heading">{PERSONAL_INFO.fullName}</h3>
@@ -40,7 +40,7 @@ export default function Footer() {
               href={PERSONAL_INFO.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-3 rounded-full bg-white/[0.04] hover:bg-white/[0.1] border border-white/[0.1] text-zinc-300 hover:text-white transition"
+              className="p-3 rounded-full bg-purple-500/[0.06] hover:bg-purple-500/[0.15] border border-purple-500/20 hover:border-purple-500/40 text-purple-300 hover:text-white transition shadow-sm"
               aria-label="GitHub Profile"
             >
               <Github className="w-4 h-4" />
@@ -49,14 +49,14 @@ export default function Footer() {
               href={PERSONAL_INFO.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-3 rounded-full bg-white/[0.04] hover:bg-white/[0.1] border border-white/[0.1] text-zinc-300 hover:text-white transition"
+              className="p-3 rounded-full bg-blue-500/[0.06] hover:bg-blue-500/[0.15] border border-blue-500/20 hover:border-blue-500/40 text-blue-300 hover:text-white transition shadow-sm"
               aria-label="LinkedIn Profile"
             >
               <Linkedin className="w-4 h-4" />
             </a>
             <a
               href={`mailto:${PERSONAL_INFO.email}`}
-              className="p-3 rounded-full bg-white/[0.04] hover:bg-white/[0.1] border border-white/[0.1] text-zinc-300 hover:text-white transition"
+              className="p-3 rounded-full bg-emerald-500/[0.06] hover:bg-emerald-500/[0.15] border border-emerald-500/20 hover:border-emerald-500/40 text-emerald-300 hover:text-white transition shadow-sm"
               aria-label="Send Email"
             >
               <Mail className="w-4 h-4" />
