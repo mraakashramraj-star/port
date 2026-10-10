@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 import { Menu, X, FileDown } from "lucide-react";
 import { PERSONAL_INFO } from "@/data/portfolioData";
+import ShinyText from "./ShinyText";
 
 const NAV_ITEMS = [
   { id: "home", label: "Home" },
@@ -77,8 +78,16 @@ export default function Navbar() {
             <ellipse cx="12" cy="12" rx="9.5" ry="3.8" transform="rotate(-30 12 12)" />
             <ellipse cx="12" cy="12" rx="9.5" ry="3.8" transform="rotate(90 12 12)" />
           </svg>
-          <span className="text-white font-bold tracking-tight text-sm sm:text-base font-heading">
-            {PERSONAL_INFO.fullName}
+          <span className="font-bold tracking-tight text-sm sm:text-base font-heading">
+            <ShinyText
+              text={PERSONAL_INFO.fullName}
+              color="#d4d4d8"
+              shineColor="#ffffff"
+              speed={2.2}
+              shineWidth={45}
+              softness={0.8}
+              trigger="loop"
+            />
           </span>
         </button>
 

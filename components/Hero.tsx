@@ -1,8 +1,9 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import { PERSONAL_INFO } from "@/data/portfolioData";
 import GridMotion from "./GridMotion";
+import ShinyText from "./ShinyText";
 
 interface SolidTileDef {
   title: string;
@@ -303,9 +304,18 @@ export default function Hero() {
 
       {/* Hero Foreground Content */}
       <div className="relative z-10 max-w-3xl mx-auto px-4 text-center pointer-events-none select-none">
-        {/* Main Name Heading */}
+        {/* Main Name Heading with ShinyText component from React Bits */}
         <h1 className="text-5xl sm:text-7xl md:text-8xl font-black text-white tracking-tight leading-none drop-shadow-[0_4px_28px_rgba(0,0,0,0.95)] mb-4 font-heading">
-          {PERSONAL_INFO.fullName}
+          <ShinyText
+            text={PERSONAL_INFO.fullName}
+            color="#b5b5b5"
+            shineColor="#ffffff"
+            speed={2}
+            shineWidth={45}
+            softness={0.8}
+            glow={0.3}
+            trigger="loop"
+          />
         </h1>
 
         {/* Subtitle requested by user */}
