@@ -54,10 +54,10 @@ export default function Navbar() {
   };
 
   return (
-    <header className="fixed top-4 sm:top-5 left-1/2 -translate-x-1/2 z-50 w-[94%] max-w-4xl transition-all duration-300">
-      {/* Floating Pill Container matching React Bits design */}
-      <div className="relative backdrop-blur-xl bg-[#0e1017]/80 border border-white/10 rounded-2xl px-4 py-2.5 sm:px-6 sm:py-3 shadow-[0_20px_50px_rgba(0,0,0,0.65)] flex items-center justify-between">
-        {/* Brand Logo with React Bits-style clean atom emblem */}
+    <header className="fixed top-4 sm:top-5 left-1/2 -translate-x-1/2 z-50 w-[92%] max-w-2xl transition-all duration-300">
+      {/* Floating Pill Container matching React Bits design exactly */}
+      <div className="relative backdrop-blur-xl bg-[#0f1118]/75 border border-white/10 rounded-2xl px-5 py-2.5 sm:px-6 sm:py-2.5 shadow-[0_20px_50px_rgba(0,0,0,0.6)] flex items-center justify-between">
+        {/* Brand Logo with React Bits emblem */}
         <button
           onClick={() => scrollTo("home")}
           className="flex items-center gap-2.5 focus:outline-none group"
@@ -78,65 +78,38 @@ export default function Navbar() {
             <ellipse cx="12" cy="12" rx="9.5" ry="3.8" transform="rotate(90 12 12)" />
           </svg>
           <span className="text-white font-bold tracking-tight text-sm sm:text-base font-heading">
-            {PERSONAL_INFO.fullName}
+            React Bits
           </span>
         </button>
 
-        {/* Center / Right Navigation Links */}
-        <nav className="hidden md:flex items-center gap-6 lg:gap-7 text-sm font-medium text-zinc-400">
+        {/* Center / Right Navigation Links matching React Bits */}
+        <nav className="flex items-center gap-6 sm:gap-7 text-sm font-medium text-zinc-400 ml-auto mr-4 sm:mr-5">
           <button
             onClick={() => scrollTo("projects")}
-            className={`hover:text-white transition-colors ${activeSection === "projects" ? "text-white font-semibold" : ""}`}
+            className="hover:text-white transition-colors"
           >
-            Projects
+            Features
           </button>
           <button
             onClick={() => scrollTo("about")}
-            className={`hover:text-white transition-colors ${activeSection === "about" ? "text-white font-semibold" : ""}`}
+            className="hover:text-white transition-colors"
           >
             About
-          </button>
-          <button
-            onClick={() => scrollTo("skills")}
-            className={`hover:text-white transition-colors ${activeSection === "skills" ? "text-white font-semibold" : ""}`}
-          >
-            Skills
-          </button>
-          <button
-            onClick={() => scrollTo("experience")}
-            className={`hover:text-white transition-colors ${activeSection === "experience" ? "text-white font-semibold" : ""}`}
-          >
-            Experience
-          </button>
-          <button
-            onClick={() => scrollTo("contact")}
-            className={`hover:text-white transition-colors ${activeSection === "contact" ? "text-white font-semibold" : ""}`}
-          >
-            Contact
           </button>
         </nav>
 
         {/* Far-Right White Pill Action Button (Matches 'Sign up' pill in React Bits) */}
-        <div className="flex items-center gap-2 sm:gap-3">
+        <div className="flex items-center gap-2">
           <a
             href={PERSONAL_INFO.resumePath}
             download="Aakash-MR-Resume.pdf"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center px-4 sm:px-5 py-2 text-xs sm:text-sm font-bold text-black bg-white hover:bg-zinc-200 rounded-xl shadow-[0_4px_16px_rgba(255,255,255,0.25)] transition-all duration-200 hover:scale-[1.02] active:scale-95"
+            className="inline-flex items-center justify-center px-4 sm:px-5 py-2 text-xs sm:text-sm font-bold text-black bg-white hover:bg-zinc-100 rounded-xl shadow-[0_4px_16px_rgba(255,255,255,0.2)] transition-all duration-200 hover:scale-[1.02] active:scale-95"
             id="nav-resume-btn"
           >
-            <span>Resume</span>
+            <span>Sign up</span>
           </a>
-
-          {/* Mobile Menu Toggle Button */}
-          <button
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden p-2 text-zinc-300 hover:text-white rounded-lg focus:outline-none"
-            aria-label="Toggle navigation menu"
-          >
-            {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-          </button>
         </div>
       </div>
 
