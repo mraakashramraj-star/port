@@ -69,8 +69,8 @@
   padding: 0 1em;
 }
 
-/* Black & White Monochrome Tech Stack Card Nodes */
-.tech-tile-node {
+/* Vibrant Colorful Tech Stack Card Nodes */
+.tech-tile-colorful {
   width: 100%;
   height: 100%;
   display: flex;
@@ -79,42 +79,78 @@
   justify-content: center;
   gap: 8px;
   padding: 12px;
-  background: linear-gradient(145deg, rgba(18, 18, 20, 0.95), rgba(8, 8, 10, 0.98));
   border-radius: inherit;
-  box-shadow: 0 8px 24px -6px rgba(0, 0, 0, 0.7);
-  transition: all 0.25s ease;
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(12px);
 }
 
-.tech-tile-node:hover {
-  transform: scale(1.04);
-  border-color: rgba(255, 255, 255, 0.22);
-  box-shadow: 0 12px 28px -4px rgba(255, 255, 255, 0.08);
+.tech-tile-colorful::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 20%, rgba(255, 255, 255, 0.15), transparent 70%);
+  pointer-events: none;
 }
 
-.tech-tile-icon-wrap {
-  width: 44px;
-  height: 44px;
-  border-radius: 12px;
+.tech-tile-colorful:hover {
+  transform: translateY(-2px) scale(1.05);
+  filter: brightness(1.18);
+}
+
+.tech-tile-icon-wrap-colorful {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
-  color: #ffffff;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 22px -4px rgba(0, 0, 0, 0.55);
+  transition: transform 0.3s ease;
+}
+
+.tech-tile-colorful:hover .tech-tile-icon-wrap-colorful {
+  transform: scale(1.12) rotate(4deg);
 }
 
 .tech-tile-name {
   font-size: 13px;
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: 0.3px;
   color: #ffffff;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
 }
 
 .tech-tile-category {
   font-size: 10px;
   text-transform: uppercase;
   letter-spacing: 1.2px;
-  color: #a1a1aa;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.85);
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
+}
+
+/* Vibrant Project Showcase Tiles */
+.project-motion-tile {
+  width: 100%;
+  height: 100%;
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: inherit;
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(14px);
+  box-shadow: 0 10px 30px -8px rgba(0, 0, 0, 0.7);
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.project-motion-tile:hover {
+  transform: scale(1.05);
+  filter: brightness(1.15);
 }

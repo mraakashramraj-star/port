@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { Menu, X, FileDown, ArrowUpRight, Code2 } from "lucide-react";
+import { Menu, X, FileDown } from "lucide-react";
 import { PERSONAL_INFO } from "@/data/portfolioData";
 
 const NAV_ITEMS = [
@@ -17,15 +17,6 @@ const NAV_ITEMS = [
 export default function Navbar() {
   const [activeSection, setActiveSection] = useState<string>("home");
   const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
-  const [scrolled, setScrolled] = useState<boolean>(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
-    };
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   useEffect(() => {
     const sections = NAV_ITEMS.map((item) => document.getElementById(item.id)).filter(Boolean) as HTMLElement[];
@@ -52,7 +43,7 @@ export default function Navbar() {
     setMobileMenuOpen(false);
     const element = document.getElementById(id);
     if (element) {
-      const topOffset = 80;
+      const topOffset = 90;
       const elementPosition = element.getBoundingClientRect().top;
       const offsetPosition = elementPosition + window.pageYOffset - topOffset;
       window.scrollTo({
@@ -63,141 +54,120 @@ export default function Navbar() {
   };
 
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "bg-[#07080b]/90 backdrop-blur-md border-b border-white/[0.08] shadow-[0_10px_30px_-10px_rgba(0,0,0,0.8)] py-3"
-          : "bg-transparent py-5"
-      }`}
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between">
-          {/* Brand Logo */}
-          <button
-            onClick={() => scrollTo("home")}
-            className="group flex items-center gap-2.5 text-left focus:outline-none focus:ring-2 focus:ring-white/40 rounded-lg px-2 py-1 -ml-2 transition"
-            aria-label="Go to top of page"
+    <header className="fixed top-4 sm:top-5 left-1/2 -translate-x-1/2 z-50 w-[94%] max-w-4xl transition-all duration-300">
+      {/* Floating Pill Container matching React Bits design */}
+      <div className="relative backdrop-blur-xl bg-[#0e1017]/80 border border-white/10 rounded-2xl px-4 py-2.5 sm:px-6 sm:py-3 shadow-[0_20px_50px_rgba(0,0,0,0.65)] flex items-center justify-between">
+        {/* Brand Logo with React Bits-style clean atom emblem */}
+        <button
+          onClick={() => scrollTo("home")}
+          className="flex items-center gap-2.5 focus:outline-none group"
+          aria-label="Scroll to top"
+        >
+          <svg
+            className="w-5 h-5 text-white transition-transform duration-500 group-hover:rotate-45"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.8"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           >
-            <div className="w-9 h-9 rounded-xl bg-white/[0.08] border border-white/20 p-[1px] shadow-lg shadow-black/40 group-hover:border-white/40 transition">
-              <div className="w-full h-full bg-[#0a0c10] rounded-[11px] flex items-center justify-center">
-                <Code2 className="w-4 h-4 text-white group-hover:scale-110 transition-transform" />
-              </div>
-            </div>
-            <div className="flex flex-col">
-              <span className="text-white font-bold tracking-tight text-base sm:text-lg flex items-center gap-1.5 font-heading">
-                {PERSONAL_INFO.fullName}
-              </span>
-              <span className="text-[10px] text-zinc-400 font-medium tracking-wider uppercase -mt-0.5">
-                Full-Stack Dev
-              </span>
-            </div>
+            <circle cx="12" cy="12" r="2.5" />
+            <ellipse cx="12" cy="12" rx="9.5" ry="3.8" transform="rotate(30 12 12)" />
+            <ellipse cx="12" cy="12" rx="9.5" ry="3.8" transform="rotate(-30 12 12)" />
+            <ellipse cx="12" cy="12" rx="9.5" ry="3.8" transform="rotate(90 12 12)" />
+          </svg>
+          <span className="text-white font-bold tracking-tight text-sm sm:text-base font-heading">
+            {PERSONAL_INFO.fullName}
+          </span>
+        </button>
+
+        {/* Center / Right Navigation Links */}
+        <nav className="hidden md:flex items-center gap-6 lg:gap-7 text-sm font-medium text-zinc-400">
+          <button
+            onClick={() => scrollTo("projects")}
+            className={`hover:text-white transition-colors ${activeSection === "projects" ? "text-white font-semibold" : ""}`}
+          >
+            Projects
           </button>
+          <button
+            onClick={() => scrollTo("about")}
+            className={`hover:text-white transition-colors ${activeSection === "about" ? "text-white font-semibold" : ""}`}
+          >
+            About
+          </button>
+          <button
+            onClick={() => scrollTo("skills")}
+            className={`hover:text-white transition-colors ${activeSection === "skills" ? "text-white font-semibold" : ""}`}
+          >
+            Skills
+          </button>
+          <button
+            onClick={() => scrollTo("experience")}
+            className={`hover:text-white transition-colors ${activeSection === "experience" ? "text-white font-semibold" : ""}`}
+          >
+            Experience
+          </button>
+          <button
+            onClick={() => scrollTo("contact")}
+            className={`hover:text-white transition-colors ${activeSection === "contact" ? "text-white font-semibold" : ""}`}
+          >
+            Contact
+          </button>
+        </nav>
 
-          {/* Desktop Navigation Links */}
-          <nav className="hidden lg:flex items-center gap-1 bg-white/[0.03] border border-white/[0.08] rounded-full px-4 py-1.5 backdrop-blur-md">
-            {NAV_ITEMS.map((item) => {
-              const isActive = activeSection === item.id;
-              return (
-                <button
-                  key={item.id}
-                  onClick={() => scrollTo(item.id)}
-                  className={`relative px-3.5 py-1.5 text-[13px] font-medium transition-colors duration-200 rounded-full focus:outline-none focus:ring-2 focus:ring-white/40 ${
-                    isActive ? "text-white" : "text-zinc-400 hover:text-white"
-                  }`}
-                >
-                  {isActive && (
-                    <span className="absolute inset-0 bg-white/10 border border-white/25 rounded-full shadow-[0_0_12px_rgba(255,255,255,0.1)] transition-all" />
-                  )}
-                  <span className="relative z-10">{item.label}</span>
-                </button>
-              );
-            })}
-          </nav>
+        {/* Far-Right White Pill Action Button (Matches 'Sign up' pill in React Bits) */}
+        <div className="flex items-center gap-2 sm:gap-3">
+          <a
+            href={PERSONAL_INFO.resumePath}
+            download="Aakash-MR-Resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center px-4 sm:px-5 py-2 text-xs sm:text-sm font-bold text-black bg-white hover:bg-zinc-200 rounded-xl shadow-[0_4px_16px_rgba(255,255,255,0.25)] transition-all duration-200 hover:scale-[1.02] active:scale-95"
+            id="nav-resume-btn"
+          >
+            <span>Resume</span>
+          </a>
 
-          {/* Desktop Actions */}
-          <div className="hidden sm:flex items-center gap-3">
-            <a
-              href={PERSONAL_INFO.resumePath}
-              download="Aakash-MR-Resume.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-5 py-2 text-xs font-semibold tracking-wide text-black bg-white hover:bg-zinc-200 rounded-full shadow-[0_0_20px_rgba(255,255,255,0.18)] hover:shadow-[0_0_28px_rgba(255,255,255,0.3)] transition-all duration-200 hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-white"
-              id="nav-resume-btn"
-            >
-              <FileDown className="w-3.5 h-3.5" />
-              <span>Resume</span>
-            </a>
-
-            <button
-              onClick={() => scrollTo("contact")}
-              className="inline-flex items-center gap-1.5 px-3.5 py-2 text-xs font-medium text-zinc-300 hover:text-white bg-white/[0.05] hover:bg-white/[0.1] border border-white/[0.1] hover:border-white/30 rounded-full transition-all focus:outline-none focus:ring-2 focus:ring-white/40"
-            >
-              <span>Connect</span>
-              <ArrowUpRight className="w-3 h-3 text-zinc-400" />
-            </button>
-          </div>
-
-          {/* Mobile Menu Button */}
-          <div className="flex sm:hidden items-center gap-2">
-            <a
-              href={PERSONAL_INFO.resumePath}
-              download="Aakash-MR-Resume.pdf"
-              className="p-2 text-black bg-white rounded-lg text-xs flex items-center justify-center font-bold"
-              aria-label="Download Resume"
-            >
-              <FileDown className="w-4 h-4" />
-            </a>
-            <button
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 text-zinc-300 hover:text-white bg-white/[0.04] border border-white/[0.08] rounded-xl focus:outline-none focus:ring-2 focus:ring-white"
-              aria-label="Toggle navigation menu"
-              aria-expanded={mobileMenuOpen}
-            >
-              {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-            </button>
-          </div>
+          {/* Mobile Menu Toggle Button */}
+          <button
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="md:hidden p-2 text-zinc-300 hover:text-white rounded-lg focus:outline-none"
+            aria-label="Toggle navigation menu"
+          >
+            {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+          </button>
         </div>
       </div>
 
-      {/* Mobile Drawer */}
-      <div
-        className={`sm:hidden transition-all duration-300 ease-in-out overflow-hidden ${
-          mobileMenuOpen ? "max-h-[460px] opacity-100 mt-3" : "max-h-0 opacity-0"
-        }`}
-      >
-        <div className="bg-[#0b0d14]/95 backdrop-blur-xl border-y border-white/[0.08] px-5 py-4 space-y-1 shadow-2xl">
+      {/* Mobile Drawer Dropdown */}
+      {mobileMenuOpen && (
+        <div className="mt-2.5 backdrop-blur-2xl bg-[#121319]/95 border border-white/10 rounded-2xl p-4 shadow-2xl flex flex-col gap-1.5 animate-in fade-in slide-in-from-top-2 duration-200">
           {NAV_ITEMS.map((item) => (
             <button
               key={item.id}
               onClick={() => scrollTo(item.id)}
-              className={`w-full text-left px-3.5 py-2.5 rounded-xl text-sm font-medium flex items-center justify-between transition ${
+              className={`w-full text-left px-3.5 py-2 rounded-xl text-xs sm:text-sm font-medium transition ${
                 activeSection === item.id
-                  ? "bg-white/10 text-white border border-white/20"
-                  : "text-zinc-400 hover:bg-white/[0.04] hover:text-white"
+                  ? "bg-white/10 text-white font-bold"
+                  : "text-zinc-300 hover:bg-white/[0.04] hover:text-white"
               }`}
             >
-              <span>{item.label}</span>
-              {activeSection === item.id && <span className="w-1.5 h-1.5 rounded-full bg-white" />}
+              {item.label}
             </button>
           ))}
-          <div className="pt-3 border-t border-white/[0.06] flex gap-2">
+          <div className="pt-2 border-t border-white/10 mt-1">
             <a
               href={PERSONAL_INFO.resumePath}
               download="Aakash-MR-Resume.pdf"
-              className="flex-1 flex items-center justify-center gap-2 py-2.5 text-xs font-semibold text-black bg-white rounded-xl shadow-lg"
+              className="w-full inline-flex items-center justify-center gap-2 px-4 py-2 text-xs font-bold text-black bg-white rounded-xl shadow-md"
             >
               <FileDown className="w-3.5 h-3.5" />
               <span>Download Resume</span>
             </a>
-            <button
-              onClick={() => scrollTo("contact")}
-              className="px-4 py-2.5 text-xs font-semibold text-zinc-200 bg-white/[0.06] border border-white/[0.1] rounded-xl"
-            >
-              Contact
-            </button>
           </div>
         </div>
-      </div>
+      )}
     </header>
   );
 }
