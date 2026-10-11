@@ -1,0 +1,87 @@
+/* Cinematic Single Horizontal Row Infinite Loop for the Six Skill Boxes */
+
+@keyframes skillsSingleRowScroll {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.skills-single-row {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  padding: 1.5rem 0 2rem 0;
+  user-select: none;
+}
+
+.skills-single-row__track {
+  display: flex;
+  width: max-content;
+  gap: 1.5rem;
+  will-change: transform;
+  animation: skillsSingleRowScroll 40s linear infinite;
+}
+
+/* Pause animation on hover so user can easily inspect skills */
+.skills-single-row:hover .skills-single-row__track {
+  animation-play-state: paused;
+}
+
+/* Base Category Box Styling */
+.skill-category-card {
+  position: relative;
+  flex-shrink: 0;
+  border-radius: 1.5rem;
+  background: #0c0e17;
+  box-shadow: 0 16px 40px -16px rgba(0, 0, 0, 0.85);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.35s ease,
+              opacity 0.3s ease;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.skill-category-card:hover {
+  transform: translateY(-6px) scale(1.015);
+  box-shadow: 0 24px 50px -12px rgba(0, 0, 0, 0.95);
+  z-index: 10;
+}
+
+/* Left & Right Vignette Fade Masks */
+.skills-single-row__vignette-left {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 120px;
+  background: linear-gradient(to right, #07080b 0%, rgba(7, 8, 11, 0.85) 40%, transparent 100%);
+  pointer-events: none;
+  z-index: 20;
+}
+
+.skills-single-row__vignette-right {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 120px;
+  background: linear-gradient(to left, #07080b 0%, rgba(7, 8, 11, 0.85) 40%, transparent 100%);
+  pointer-events: none;
+  z-index: 20;
+}
+
+@media (max-width: 640px) {
+  .skills-single-row__vignette-left,
+  .skills-single-row__vignette-right {
+    width: 48px;
+  }
+  .skills-single-row__track {
+    gap: 1rem;
+    animation-duration: 32s;
+  }
+}

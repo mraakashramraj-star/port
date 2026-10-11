@@ -1,0 +1,177 @@
+/* =========================================================================
+   HAMMER CURSOR STYLES
+   - Smooth desktop cursor replacement with custom Mjolnir hammer
+   - Click swing strike animation with physics recoil
+   - Impact shockwave ripple, flash, and spark particles
+   - Subtle screen shake on impact
+   - Graceful fallback on mobile / touch devices
+   ========================================================================= */
+
+/* Hide default cursor on desktop with fine mouse pointer */
+@media (hover: hover) and (pointer: fine) {
+  html.hammer-cursor-enabled,
+  html.hammer-cursor-enabled *,
+  html.hammer-cursor-enabled button,
+  html.hammer-cursor-enabled a,
+  html.hammer-cursor-enabled input,
+  html.hammer-cursor-enabled textarea,
+  html.hammer-cursor-enabled select,
+  html.hammer-cursor-enabled [role="button"] {
+    cursor: none !important;
+  }
+}
+
+/* On mobile, touch, or coarse pointer devices: restore normal cursor and hide hammer */
+@media (hover: none), (pointer: coarse) {
+  .hammer-cursor-root {
+    display: none !important;
+  }
+}
+
+.hammer-cursor-root {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 99999;
+  overflow: hidden;
+}
+
+/* Hammer sprite */
+.hammer-cursor-sprite {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 52px;
+  height: 50px;
+  pointer-events: none;
+  z-index: 99999;
+  will-change: transform;
+  transform-origin: 65% 82%;
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.5)) drop-shadow(0 0 6px rgba(56, 189, 248, 0.35));
+  user-select: none;
+  transition: opacity 0.15s ease;
+}
+
+/* Hammer swing downward strike animation */
+.hammer-cursor-sprite.strike {
+  animation: hammerSwingStrike 0.28s cubic-bezier(0.18, 0.89, 0.32, 1.25) forwards;
+}
+
+@keyframes hammerSwingStrike {
+  0% {
+    transform: translate3d(var(--hx), var(--hy), 0) rotate(0deg) scale(1);
+  }
+  16% {
+    /* Wind up backwards and lift slightly */
+    transform: translate3d(calc(var(--hx) + 3px), calc(var(--hy) - 6px), 0) rotate(-22deg) scale(1.05);
+  }
+  46% {
+    /* Fast downward hammer strike impact */
+    transform: translate3d(calc(var(--hx) - 5px), calc(var(--hy) + 5px), 0) rotate(44deg) scale(0.96);
+  }
+  70% {
+    /* Recoil bounce */
+    transform: translate3d(calc(var(--hx) + 1px), calc(var(--hy) - 2px), 0) rotate(-6deg) scale(1.02);
+  }
+  88% {
+    transform: translate3d(var(--hx), var(--hy), 0) rotate(2deg) scale(1);
+  }
+  100% {
+    transform: translate3d(var(--hx), var(--hy), 0) rotate(0deg) scale(1);
+  }
+}
+
+/* Impact Shockwave Ripple */
+.hammer-impact-ripple {
+  position: fixed;
+  border-radius: 50%;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  animation: hammerShockwave 0.42s cubic-bezier(0.1, 0.85, 0.25, 1) forwards;
+  z-index: 99996;
+  border: 2px solid rgba(255, 255, 255, 0.95);
+  box-shadow:
+    0 0 16px rgba(56, 189, 248, 0.85),
+    0 0 32px rgba(96, 165, 250, 0.45),
+    inset 0 0 12px rgba(56, 189, 248, 0.6);
+}
+
+@keyframes hammerShockwave {
+  0% {
+    width: 6px;
+    height: 6px;
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(0.2);
+  }
+  60% {
+    opacity: 0.75;
+  }
+  100% {
+    width: 86px;
+    height: 86px;
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1.2);
+    border-width: 1px;
+  }
+}
+
+/* Impact Central Flash */
+.hammer-impact-flash {
+  position: fixed;
+  border-radius: 50%;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  width: 22px;
+  height: 22px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgba(56, 189, 248, 0.9) 45%, transparent 100%);
+  animation: hammerFlash 0.18s ease-out forwards;
+  z-index: 99997;
+}
+
+@keyframes hammerFlash {
+  0% {
+    transform: translate(-50%, -50%) scale(0.2);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1.6);
+    opacity: 0;
+  }
+}
+
+/* Sparks Burst */
+.hammer-spark-particle {
+  position: fixed;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 99997;
+  animation: hammerSparkFly var(--duration, 0.35s) cubic-bezier(0.12, 0.82, 0.35, 1) forwards;
+}
+
+@keyframes hammerSparkFly {
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 1;
+  }
+  75% {
+    opacity: 0.85;
+  }
+  100% {
+    transform: translate(var(--dx), var(--dy)) scale(0);
+    opacity: 0;
+  }
+}
+
+/* Subtle Screen Shake on Strike */
+.hammer-shake-screen {
+  animation: hammerScreenShake 0.15s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+}
+
+@keyframes hammerScreenShake {
+  0% { transform: translate3d(0, 0, 0); }
+  20% { transform: translate3d(-2px, 3px, 0); }
+  40% { transform: translate3d(3px, -2px, 0); }
+  60% { transform: translate3d(-1px, 2px, 0); }
+  80% { transform: translate3d(2px, -1px, 0); }
+  100% { transform: translate3d(0, 0, 0); }
+}

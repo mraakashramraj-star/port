@@ -17,6 +17,8 @@ export interface ProjectData {
   isLive: boolean;
   type: "Web Application" | "Full-Stack System" | "Desktop Software" | "AI / NLP Solution";
   accentColor: string;
+  image?: string;
+  screenshots?: { title: string; src: string; caption?: string }[];
 }
 
 export interface SkillCategory {
@@ -181,6 +183,29 @@ export const PROJECTS_DATA: ProjectData[] = [
     githubUrl: "https://github.com/mraakashramraj-star/econsult-ai-frontend",
     isLive: true,
     accentColor: "#3b82f6",
+    image: "/projects/econsult-ai/dashboard.png",
+    screenshots: [
+      {
+        title: "Public Feedback Dashboard",
+        src: "/projects/econsult-ai/dashboard.png",
+        caption: "Overview of stakeholder feedback received through the MCA21 E-Consultation module.",
+      },
+      {
+        title: "Comments Upload Interface",
+        src: "/projects/econsult-ai/comments.png",
+        caption: "Upload CSV or Excel files containing stakeholder comments for AI analysis.",
+      },
+      {
+        title: "Sentiment Analytics & Distribution",
+        src: "/projects/econsult-ai/analytics.png",
+        caption: "AI-powered sentiment classification (Positive, Neutral, Negative) and confidence scoring.",
+      },
+      {
+        title: "Export Reports",
+        src: "/projects/econsult-ai/reports.png",
+        caption: "Export analyzed stakeholder feedback and AI summaries to Excel, CSV, and PDF.",
+      },
+    ],
   },
   {
     id: "smart-op-hospital",
@@ -221,6 +246,29 @@ export const PROJECTS_DATA: ProjectData[] = [
     githubUrl: "https://github.com/mraakashramraj-star/smart-op-hospital-system",
     isLive: true,
     accentColor: "#10b981",
+    image: "/projects/smart-op/dashboard.png",
+    screenshots: [
+      {
+        title: "Outpatient Dashboard",
+        src: "/projects/smart-op/dashboard.png",
+        caption: "Patient welcome screen with quick actions: Book Appointment, Find Doctor, and Appointment History.",
+      },
+      {
+        title: "Appointments Management",
+        src: "/projects/smart-op/appointments.png",
+        caption: "Doctor appointment tracking, status filters, and scheduled consultation details.",
+      },
+      {
+        title: "Specialist Directory",
+        src: "/projects/smart-op/doctors.png",
+        caption: "Doctor catalog with department, experience, availability badges, and instant booking.",
+      },
+      {
+        title: "Patient Profile & Records",
+        src: "/projects/smart-op/profile.png",
+        caption: "Patient demographics, emergency contacts, and medical registration records.",
+      },
+    ],
   },
   {
     id: "cureconnect",
@@ -257,6 +305,14 @@ export const PROJECTS_DATA: ProjectData[] = [
     ],
     isLive: false,
     accentColor: "#8b5cf6",
+    image: "/projects/cureconnect/dashboard.jpg",
+    screenshots: [
+      {
+        title: "Specialist Discovery & Appointment Booking",
+        src: "/projects/cureconnect/dashboard.jpg",
+        caption: "Department filters, doctor profiles, availability ratings, and interactive calendar time-slot booking.",
+      },
+    ],
   },
   {
     id: "batron-gym",
@@ -295,6 +351,14 @@ export const PROJECTS_DATA: ProjectData[] = [
     githubUrl: "https://github.com/mraakashramraj-star/BATRON",
     isLive: false,
     accentColor: "#f59e0b",
+    image: "/projects/batron-gym/dashboard.jpg",
+    screenshots: [
+      {
+        title: "BATRON Gym Management Dashboard",
+        src: "/projects/batron-gym/dashboard.jpg",
+        caption: "Active membership metrics, upcoming renewals, attendance logs, and tier-based member management.",
+      },
+    ],
   },
 ];
 

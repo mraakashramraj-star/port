@@ -4,6 +4,8 @@ import React from "react";
 import { PERSONAL_INFO } from "@/data/portfolioData";
 import GridMotion from "./GridMotion";
 import ShinyText from "./ShinyText";
+import SpecularButton from "./SpecularButton";
+import AnimatedContent from "./AnimatedContent";
 
 interface SolidTileDef {
   title: string;
@@ -288,9 +290,9 @@ export default function Hero() {
           speed={22}
           direction="alternate"
           parallax={0.5}
-          spotlight={0.7}
-          dim={0.06}
-          fade={0.15}
+          spotlight={0.8}
+          dim={0.02}
+          fade={0.08}
           grayscale={false}
           tileColor="#12131f"
           textColor="#ffffff"
@@ -298,14 +300,18 @@ export default function Hero() {
           className="w-full h-full"
         />
 
-        {/* Soft edge perimeter vignette leaving the entire center wall bright & unobstructed */}
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,transparent_50%,rgba(0,0,0,0.85)_100%)] pointer-events-none" />
+        {/* Subtle perimeter vignette and bottom section fade so colorful tech tiles stay vivid and bright */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_65%,rgba(7,8,11,0.65)_100%)] pointer-events-none" />
+        <div className="absolute bottom-0 left-0 right-0 h-36 bg-gradient-to-t from-[#07080b] to-transparent pointer-events-none" />
       </div>
 
       {/* Hero Foreground Content */}
-      <div className="relative z-10 max-w-3xl mx-auto px-4 text-center pointer-events-none select-none">
+      <div className="relative z-10 max-w-3xl mx-auto px-4 sm:px-6 text-center pointer-events-none select-none">
+        {/* Soft localized backdrop aura to keep text sharp without dimming the background wall */}
+        <div className="absolute inset-0 -m-8 bg-black/40 rounded-3xl blur-2xl -z-10 pointer-events-none" />
+
         {/* Main Name Heading with ShinyText component from React Bits */}
-        <h1 className="text-5xl sm:text-7xl md:text-8xl font-black text-white tracking-tight leading-none drop-shadow-[0_4px_28px_rgba(0,0,0,0.95)] mb-4 font-heading">
+        <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-white tracking-tight leading-tight sm:leading-none drop-shadow-[0_4px_30px_rgba(0,0,0,0.95)] mb-3 sm:mb-4 font-heading">
           <ShinyText
             text={PERSONAL_INFO.fullName}
             color="#b5b5b5"
@@ -319,31 +325,58 @@ export default function Hero() {
         </h1>
 
         {/* Subtitle requested by user */}
-        <p className="text-lg sm:text-2xl font-medium text-zinc-100 max-w-2xl mx-auto mb-8 drop-shadow-[0_2px_18px_rgba(0,0,0,0.95)] leading-relaxed">
+        <p className="text-sm sm:text-lg md:text-xl font-medium text-zinc-200 max-w-xl mx-auto mb-6 sm:mb-8 drop-shadow-[0_2px_18px_rgba(0,0,0,0.95)] leading-relaxed">
           IT student and full-stack developer passionate about building intuitive web applications and practical software solutions.
         </p>
 
-        {/* Action Buttons */}
-        <div className="flex items-center justify-center gap-3.5 sm:gap-4 pointer-events-auto">
-          <button
-            onClick={() => scrollTo("projects")}
-            className="px-7 py-3 text-sm sm:text-base font-bold text-black bg-white hover:bg-zinc-100 rounded-2xl shadow-[0_8px_25px_rgba(0,0,0,0.7)] transition-all duration-200 hover:scale-105 active:scale-95"
-            id="hero-explore-btn"
-          >
-            Explore My Work
-          </button>
+        {/* Action Buttons with SpecularButton from React Bits */}
+        <AnimatedContent distance={30} delay={0.2} duration={0.8} ease="power3.out">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 pointer-events-auto w-full max-w-xs sm:max-w-none mx-auto">
+            <SpecularButton
+              size="md"
+              radius={16}
+              tint="#ffffff"
+              tintOpacity={0.95}
+              textColor="#000000"
+              lineColor="#ffffff"
+              baseColor="#ffffff"
+              intensity={1.2}
+              idleIntensity={0.5}
+              glow={1}
+              shineSize={12}
+              shineFade={30}
+              thickness={1.5}
+              onClick={() => scrollTo("projects")}
+              id="hero-explore-btn"
+              className="w-full sm:w-auto font-bold shadow-[0_8px_30px_rgba(255,255,255,0.25)] text-center justify-center py-2.5 sm:py-2.5"
+            >
+              Explore My Work
+            </SpecularButton>
 
-          <a
-            href={PERSONAL_INFO.resumePath}
-            download="Aakash-MR-Resume.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="px-7 py-3 text-sm sm:text-base font-semibold text-white hover:text-white bg-[#181920]/65 hover:bg-[#181920]/90 border border-white/20 backdrop-blur-md rounded-2xl shadow-[0_8px_25px_rgba(0,0,0,0.7)] transition-all duration-200 hover:scale-105 active:scale-95"
-            id="hero-resume-btn"
-          >
-            Download Resume
-          </a>
-        </div>
+            <SpecularButton
+              size="md"
+              radius={16}
+              tint="#121318"
+              tintOpacity={0.85}
+              textColor="#ffffff"
+              lineColor="#ffffff"
+              baseColor="#525252"
+              intensity={1.2}
+              idleIntensity={0.45}
+              glow={1}
+              shineSize={14}
+              shineFade={32}
+              thickness={1.4}
+              href={PERSONAL_INFO.resumePath}
+              download="Aakash-MR-Resume.pdf"
+              target="_blank"
+              id="hero-resume-btn"
+              className="w-full sm:w-auto font-semibold border border-white/20 backdrop-blur-md shadow-[0_8px_30px_rgba(0,0,0,0.6)] text-center justify-center py-2.5 sm:py-2.5"
+            >
+              Download Resume
+            </SpecularButton>
+          </div>
+        </AnimatedContent>
       </div>
     </section>
   );

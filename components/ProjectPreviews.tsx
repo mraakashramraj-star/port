@@ -10,151 +10,205 @@ import {
   CheckCircle2,
 } from "lucide-react";
 
+const ECONSULT_SCREENSHOTS = {
+  dashboard: {
+    src: "/projects/econsult-ai/dashboard.png",
+    name: "Dashboard",
+    tagline: "Public Feedback Overview",
+    badge: "Live View",
+  },
+  comments: {
+    src: "/projects/econsult-ai/comments.png",
+    name: "Comments",
+    tagline: "CSV / Excel Ingestion",
+    badge: "Upload",
+  },
+  analytics: {
+    src: "/projects/econsult-ai/analytics.png",
+    name: "Analytics",
+    tagline: "Sentiment & RoBERTa Confidence",
+    badge: "NLP Pipeline",
+  },
+  reports: {
+    src: "/projects/econsult-ai/reports.png",
+    name: "Reports",
+    tagline: "Multi-Format Report Export",
+    badge: "Export",
+  },
+} as const;
+
+type EConsultTab = keyof typeof ECONSULT_SCREENSHOTS;
+
 export function EConsultPreview() {
+  const [activeTab, setActiveTab] = React.useState<EConsultTab>("dashboard");
+  const current = ECONSULT_SCREENSHOTS[activeTab];
+
   return (
-    <div className="w-full h-full bg-[#0c0d12] rounded-2xl p-4 sm:p-5 flex flex-col justify-between font-sans border border-white/10 shadow-2xl overflow-hidden relative group">
-      {/* Top Window Bar */}
-      <div className="flex items-center justify-between pb-3 border-b border-white/[0.08]">
-        <div className="flex items-center gap-2">
-          <div className="w-2.5 h-2.5 rounded-full bg-zinc-600" />
-          <div className="w-2.5 h-2.5 rounded-full bg-zinc-500" />
-          <div className="w-2.5 h-2.5 rounded-full bg-zinc-400" />
-          <span className="ml-2 text-[11px] font-mono text-zinc-400">econsult-ai-dashboard</span>
-        </div>
-        <div className="flex items-center gap-2 text-[10px] font-mono text-white bg-white/[0.08] px-2.5 py-0.5 rounded-full border border-white/15">
-          <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
-          FastAPI Online
-        </div>
-      </div>
-
-      {/* Main Preview Dashboard Body */}
-      <div className="py-3 space-y-3">
-        {/* Metric Cards Row */}
-        <div className="grid grid-cols-3 gap-2">
-          <div className="bg-white/[0.03] border border-white/[0.08] rounded-xl p-2.5">
-            <span className="text-[10px] text-zinc-400 uppercase tracking-wider block">Sentiment</span>
-            <span className="text-sm sm:text-base font-bold text-white font-mono">88.4% Pos</span>
+    <div className="w-full h-full bg-[#0a0c12] rounded-2xl flex flex-col font-sans border border-white/10 shadow-2xl overflow-hidden relative group select-none">
+      {/* Top Browser / Window Header Bar */}
+      <div className="flex items-center justify-between px-3.5 py-2 border-b border-white/[0.08] bg-[#0d0f18]/95 backdrop-blur-md shrink-0 z-20">
+        <div className="flex items-center gap-2 min-w-0">
+          {/* macOS window dots */}
+          <div className="flex items-center gap-1.5 shrink-0">
+            <span className="w-2.5 h-2.5 rounded-full bg-[#ff5f56]/80 hover:bg-[#ff5f56] transition-colors" />
+            <span className="w-2.5 h-2.5 rounded-full bg-[#ffbd2e]/80 hover:bg-[#ffbd2e] transition-colors" />
+            <span className="w-2.5 h-2.5 rounded-full bg-[#27c93f]/80 hover:bg-[#27c93f] transition-colors" />
           </div>
-          <div className="bg-white/[0.03] border border-white/[0.08] rounded-xl p-2.5">
-            <span className="text-[10px] text-zinc-400 uppercase tracking-wider block">Analyzed</span>
-            <span className="text-sm sm:text-base font-bold text-zinc-200 font-mono">1,420 logs</span>
-          </div>
-          <div className="bg-white/[0.03] border border-white/[0.08] rounded-xl p-2.5">
-            <span className="text-[10px] text-zinc-400 uppercase tracking-wider block">Model</span>
-            <span className="text-sm sm:text-base font-bold text-zinc-300 font-mono">HF RoBERTa</span>
-          </div>
-        </div>
-
-        {/* Live consultation sentiment bar (Monochrome) */}
-        <div className="bg-white/[0.02] border border-white/[0.06] rounded-xl p-3 space-y-2">
-          <div className="flex items-center justify-between text-[11px]">
-            <span className="text-zinc-200 font-medium">Polarity Distribution</span>
-            <span className="text-zinc-400 font-mono">Confidence: 0.96</span>
-          </div>
-          <div className="h-2 w-full bg-zinc-800 rounded-full overflow-hidden flex">
-            <div className="h-full bg-white w-[68%]" title="Positive 68%" />
-            <div className="h-full bg-zinc-400 w-[22%]" title="Neutral 22%" />
-            <div className="h-full bg-zinc-600 w-[10%]" title="Negative 10%" />
-          </div>
-          <div className="flex items-center justify-between text-[10px] text-zinc-400 font-mono pt-1">
-            <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-white" /> Positive (68%)</span>
-            <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-zinc-400" /> Neutral (22%)</span>
-            <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-zinc-600" /> Negative (10%)</span>
-          </div>
-        </div>
-
-        {/* Sample text classification pill */}
-        <div className="bg-white/[0.03] border border-white/[0.1] rounded-xl p-2.5 flex items-center justify-between">
-          <div className="truncate pr-2">
-            <span className="text-[11px] text-zinc-300 block truncate font-sans">
-              "The doctor was extremely attentive and explained the prescription with immense clarity."
-            </span>
-          </div>
-          <span className="text-[10px] font-semibold text-white bg-white/10 px-2 py-0.5 rounded border border-white/20 whitespace-nowrap">
-            POS +0.94
+          <span className="ml-1 text-[11px] font-mono text-zinc-300 truncate font-medium">
+            eConsult AI • MCA21
           </span>
         </div>
+
+        {/* Tab switchers */}
+        <div className="flex items-center gap-1 bg-black/50 p-0.5 rounded-lg border border-white/[0.08] shrink-0">
+          {(Object.keys(ECONSULT_SCREENSHOTS) as EConsultTab[]).map((tab) => {
+            const isActive = activeTab === tab;
+            return (
+              <button
+                key={tab}
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setActiveTab(tab);
+                }}
+                className={`px-2 py-0.5 rounded-md text-[10px] font-medium transition-all ${
+                  isActive
+                    ? "bg-purple-600/40 text-purple-200 border border-purple-500/50 shadow-sm font-semibold"
+                    : "text-zinc-400 hover:text-white hover:bg-white/[0.05]"
+                }`}
+                aria-label={`View ${ECONSULT_SCREENSHOTS[tab].name}`}
+              >
+                {ECONSULT_SCREENSHOTS[tab].name}
+              </button>
+            );
+          })}
+        </div>
       </div>
 
-      {/* Word-Cloud Keywords Bar */}
-      <div className="pt-2 border-t border-white/[0.06] flex items-center justify-between text-[11px] text-zinc-400">
-        <span className="flex items-center gap-1 font-mono text-[10px] text-zinc-300">
-          <Sparkles className="w-3 h-3 text-white" /> Keywords:
-        </span>
-        <div className="flex gap-1.5 overflow-hidden">
-          <span className="px-2 py-0.5 rounded bg-white/[0.05] text-[10px] text-zinc-300">prompt</span>
-          <span className="px-2 py-0.5 rounded bg-white/[0.05] text-[10px] text-zinc-300">caring</span>
-          <span className="px-2 py-0.5 rounded bg-white/[0.05] text-[10px] text-zinc-300">effective</span>
+      {/* Main Image Display Area */}
+      <div className="relative flex-1 w-full min-h-0 overflow-hidden bg-[#07080b]">
+        <img
+          key={current.src}
+          src={current.src}
+          alt={current.name}
+          className="w-full h-full object-cover object-top transition-transform duration-500 ease-out group-hover:scale-[1.02]"
+          loading="eager"
+        />
+
+        {/* Subtle gradient overlay at bottom for readability */}
+        <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-black/85 via-black/40 to-transparent pointer-events-none" />
+
+        {/* Bottom Floating Metadata Pills */}
+        <div className="absolute bottom-2 left-2.5 right-2.5 flex items-center justify-between pointer-events-none z-10">
+          <span className="text-[10px] font-mono text-zinc-200 bg-black/80 backdrop-blur-md px-2.5 py-1 rounded-md border border-white/15 shadow-lg truncate max-w-[70%]">
+            {current.tagline}
+          </span>
+          <span className="text-[10px] font-mono font-semibold text-emerald-300 bg-emerald-950/80 backdrop-blur-md px-2 py-0.5 rounded-md border border-emerald-500/30 shadow-lg shrink-0">
+            {current.badge}
+          </span>
         </div>
       </div>
     </div>
   );
 }
 
+const SMART_OP_SCREENSHOTS = {
+  dashboard: {
+    src: "/projects/smart-op/dashboard.png",
+    name: "Dashboard",
+    tagline: "Outpatient Quick Actions & Stats",
+    badge: "Active Counter",
+  },
+  appointments: {
+    src: "/projects/smart-op/appointments.png",
+    name: "Appointments",
+    tagline: "Scheduled & Cancelled Visits",
+    badge: "Booking",
+  },
+  doctors: {
+    src: "/projects/smart-op/doctors.png",
+    name: "Doctors",
+    tagline: "Specialist Directory & Availability",
+    badge: "11 Specialists",
+  },
+  profile: {
+    src: "/projects/smart-op/profile.png",
+    name: "Profile",
+    tagline: "Patient Information Management",
+    badge: "Records",
+  },
+} as const;
+
+type SmartOPTab = keyof typeof SMART_OP_SCREENSHOTS;
+
 export function SmartOPPreview() {
+  const [activeTab, setActiveTab] = React.useState<SmartOPTab>("dashboard");
+  const current = SMART_OP_SCREENSHOTS[activeTab];
+
   return (
-    <div className="w-full h-full bg-[#0c0d12] rounded-2xl p-4 sm:p-5 flex flex-col justify-between font-sans border border-white/10 shadow-2xl overflow-hidden relative group">
-      {/* Top Window Bar */}
-      <div className="flex items-center justify-between pb-3 border-b border-white/[0.08]">
-        <div className="flex items-center gap-2">
-          <div className="w-2.5 h-2.5 rounded-full bg-zinc-600" />
-          <div className="w-2.5 h-2.5 rounded-full bg-zinc-500" />
-          <div className="w-2.5 h-2.5 rounded-full bg-zinc-400" />
-          <span className="ml-2 text-[11px] font-mono text-zinc-400">smart-op-hospital-system</span>
-        </div>
-        <div className="flex items-center gap-1.5 text-[10px] font-mono text-white bg-white/[0.08] px-2.5 py-0.5 rounded-full border border-white/15">
-          <HeartPulse className="w-3 h-3 text-white" /> Live Clinic
-        </div>
-      </div>
-
-      {/* Main Preview Dashboard Body */}
-      <div className="py-3 space-y-3">
-        {/* Token Queue Status */}
-        <div className="grid grid-cols-2 gap-2.5">
-          <div className="bg-white/[0.04] border border-white/15 rounded-xl p-3 flex items-center justify-between">
-            <div>
-              <span className="text-[10px] uppercase tracking-wider text-zinc-400 font-mono">Current Token</span>
-              <p className="text-xl sm:text-2xl font-black text-white font-mono">#OP-042</p>
-            </div>
-            <div className="text-right">
-              <span className="text-[10px] text-zinc-400 block">Room 3B</span>
-              <span className="text-[11px] font-semibold text-zinc-200">Dr. K. Ramesh</span>
-            </div>
+    <div className="w-full h-full bg-[#0a0c12] rounded-2xl flex flex-col font-sans border border-white/10 shadow-2xl overflow-hidden relative group select-none">
+      {/* Top Browser / Window Header Bar */}
+      <div className="flex items-center justify-between px-3.5 py-2 border-b border-white/[0.08] bg-[#0d0f18]/95 backdrop-blur-md shrink-0 z-20">
+        <div className="flex items-center gap-2 min-w-0">
+          {/* macOS window dots */}
+          <div className="flex items-center gap-1.5 shrink-0">
+            <span className="w-2.5 h-2.5 rounded-full bg-[#ff5f56]/80 hover:bg-[#ff5f56] transition-colors" />
+            <span className="w-2.5 h-2.5 rounded-full bg-[#ffbd2e]/80 hover:bg-[#ffbd2e] transition-colors" />
+            <span className="w-2.5 h-2.5 rounded-full bg-[#27c93f]/80 hover:bg-[#27c93f] transition-colors" />
           </div>
-
-          <div className="bg-white/[0.03] border border-white/[0.08] rounded-xl p-3 flex items-center justify-between">
-            <div>
-              <span className="text-[10px] uppercase tracking-wider text-zinc-400 font-mono">In Queue</span>
-              <p className="text-xl sm:text-2xl font-bold text-white font-mono">14 <span className="text-xs text-zinc-400 font-normal">waiting</span></p>
-            </div>
-            <Clock className="w-5 h-5 text-zinc-400" />
-          </div>
+          <span className="ml-1 text-[11px] font-mono text-zinc-300 truncate font-medium">
+            Smart OP • Hospital Management
+          </span>
         </div>
 
-        {/* Patient Registration Flow Snippet */}
-        <div className="bg-white/[0.02] border border-white/[0.06] rounded-xl p-3 space-y-2">
-          <div className="flex items-center justify-between text-[11px]">
-            <span className="text-zinc-200 font-medium">Recent Outpatient Intake</span>
-            <span className="text-zinc-400 font-mono text-[10px]">Auto-Synced</span>
-          </div>
-
-          <div className="space-y-1.5 font-mono text-[11px]">
-            <div className="flex items-center justify-between p-1.5 rounded bg-white/[0.03] border border-white/[0.06]">
-              <span className="text-zinc-300 font-sans">#044 — V. Sundar (Age 45)</span>
-              <span className="text-white text-[10px] bg-white/10 px-2 py-0.5 rounded border border-white/15">Triage Stage</span>
-            </div>
-            <div className="flex items-center justify-between p-1.5 rounded bg-white/[0.03] border border-white/[0.06]">
-              <span className="text-zinc-300 font-sans">#043 — M. Kavitha (Age 29)</span>
-              <span className="text-zinc-300 text-[10px] bg-white/5 px-2 py-0.5 rounded border border-white/10">Vitals Check</span>
-            </div>
-          </div>
+        {/* Tab switchers */}
+        <div className="flex items-center gap-1 bg-black/50 p-0.5 rounded-lg border border-white/[0.08] shrink-0">
+          {(Object.keys(SMART_OP_SCREENSHOTS) as SmartOPTab[]).map((tab) => {
+            const isActive = activeTab === tab;
+            return (
+              <button
+                key={tab}
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setActiveTab(tab);
+                }}
+                className={`px-2 py-0.5 rounded-md text-[10px] font-medium transition-all ${
+                  isActive
+                    ? "bg-emerald-600/40 text-emerald-200 border border-emerald-500/50 shadow-sm font-semibold"
+                    : "text-zinc-400 hover:text-white hover:bg-white/[0.05]"
+                }`}
+                aria-label={`View ${SMART_OP_SCREENSHOTS[tab].name}`}
+              >
+                {SMART_OP_SCREENSHOTS[tab].name}
+              </button>
+            );
+          })}
         </div>
       </div>
 
-      {/* Footer bar */}
-      <div className="pt-2 border-t border-white/[0.06] flex items-center justify-between text-[11px] text-zinc-400">
-        <span className="text-[10px]">MySQL DB Engine • Sub-second response</span>
-        <span className="text-white font-mono text-[10px]">Zero Paperwork</span>
+      {/* Main Image Display Area */}
+      <div className="relative flex-1 w-full min-h-0 overflow-hidden bg-[#07080b]">
+        <img
+          key={current.src}
+          src={current.src}
+          alt={current.name}
+          className="w-full h-full object-cover object-top transition-transform duration-500 ease-out group-hover:scale-[1.02]"
+          loading="eager"
+        />
+
+        {/* Subtle gradient overlay at bottom for readability */}
+        <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-black/85 via-black/40 to-transparent pointer-events-none" />
+
+        {/* Bottom Floating Metadata Pills */}
+        <div className="absolute bottom-2 left-2.5 right-2.5 flex items-center justify-between pointer-events-none z-10">
+          <span className="text-[10px] font-mono text-zinc-200 bg-black/80 backdrop-blur-md px-2.5 py-1 rounded-md border border-white/15 shadow-lg truncate max-w-[70%]">
+            {current.tagline}
+          </span>
+          <span className="text-[10px] font-mono font-semibold text-emerald-300 bg-emerald-950/80 backdrop-blur-md px-2 py-0.5 rounded-md border border-emerald-500/30 shadow-lg shrink-0">
+            {current.badge}
+          </span>
+        </div>
       </div>
     </div>
   );
@@ -162,64 +216,44 @@ export function SmartOPPreview() {
 
 export function CureConnectPreview() {
   return (
-    <div className="w-full h-full bg-[#0c0d12] rounded-2xl p-4 sm:p-5 flex flex-col justify-between font-sans border border-white/10 shadow-2xl overflow-hidden relative group">
-      {/* Top Window Bar */}
-      <div className="flex items-center justify-between pb-3 border-b border-white/[0.08]">
-        <div className="flex items-center gap-2">
-          <div className="w-2.5 h-2.5 rounded-full bg-zinc-600" />
-          <div className="w-2.5 h-2.5 rounded-full bg-zinc-500" />
-          <div className="w-2.5 h-2.5 rounded-full bg-zinc-400" />
-          <span className="ml-2 text-[11px] font-mono text-zinc-400">cureconnect-portal</span>
-        </div>
-        <div className="flex items-center gap-1.5 text-[10px] font-mono text-white bg-white/[0.08] px-2.5 py-0.5 rounded-full border border-white/15">
-          <Calendar className="w-3 h-3 text-white" /> Booking Engine
-        </div>
-      </div>
-
-      {/* Main Preview Dashboard Body */}
-      <div className="py-3 space-y-3">
-        {/* Doctor Specialist Card */}
-        <div className="bg-white/[0.04] border border-white/15 rounded-xl p-3 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-xl bg-white/10 border border-white/20 flex items-center justify-center text-white font-bold text-xs">
-              DR
-            </div>
-            <div>
-              <p className="text-xs font-bold text-white">Dr. Sarah Alston, MD</p>
-              <p className="text-[10px] text-zinc-400">Senior Neurologist & Consultant</p>
-            </div>
+    <div className="w-full h-full bg-[#0a0c12] rounded-2xl flex flex-col font-sans border border-white/10 shadow-2xl overflow-hidden relative group select-none">
+      {/* Top Browser / Window Header Bar */}
+      <div className="flex items-center justify-between px-3.5 py-2 border-b border-white/[0.08] bg-[#0d0f18]/95 backdrop-blur-md shrink-0 z-20">
+        <div className="flex items-center gap-2 min-w-0">
+          <div className="flex items-center gap-1.5 shrink-0">
+            <span className="w-2.5 h-2.5 rounded-full bg-[#ff5f56]/80" />
+            <span className="w-2.5 h-2.5 rounded-full bg-[#ffbd2e]/80" />
+            <span className="w-2.5 h-2.5 rounded-full bg-[#27c93f]/80" />
           </div>
-          <span className="text-[10px] font-mono text-white bg-white/10 px-2 py-0.5 rounded border border-white/20">
-            Available
+          <span className="ml-1 text-[11px] font-mono text-zinc-300 truncate font-medium">
+            CureConnect • Appointment Booking
           </span>
         </div>
 
-        {/* Time Slot Picker Preview */}
-        <div className="bg-white/[0.02] border border-white/[0.06] rounded-xl p-3 space-y-2">
-          <div className="flex items-center justify-between text-[11px]">
-            <span className="text-zinc-200 font-medium">Select Consultation Slot</span>
-            <span className="text-zinc-400 text-[10px]">Today, 14:00 - 18:00</span>
-          </div>
-
-          <div className="grid grid-cols-4 gap-1.5 text-center text-[10px] font-mono">
-            <div className="p-1.5 rounded bg-white/[0.02] text-zinc-600 line-through border border-white/[0.04]">02:00 PM</div>
-            <div className="p-1.5 rounded bg-white text-black font-bold shadow-md">02:30 PM</div>
-            <div className="p-1.5 rounded bg-white/[0.04] text-zinc-200 border border-white/[0.08] hover:border-white/30">03:00 PM</div>
-            <div className="p-1.5 rounded bg-white/[0.04] text-zinc-200 border border-white/[0.08] hover:border-white/30">03:30 PM</div>
-          </div>
-        </div>
-
-        {/* Confirmation banner */}
-        <div className="p-2.5 rounded-xl bg-white/[0.05] border border-white/15 flex items-center gap-2">
-          <CheckCircle2 className="w-4 h-4 text-white flex-shrink-0" />
-          <span className="text-[11px] text-zinc-200 truncate">Instant SMS & Email appointment reminder activated</span>
+        <div className="flex items-center gap-1.5 text-[10px] font-mono text-purple-300 bg-purple-950/70 px-2 py-0.5 rounded-md border border-purple-500/30">
+          <span>Doctor Directory</span>
         </div>
       </div>
 
-      {/* Footer bar */}
-      <div className="pt-2 border-t border-white/[0.06] flex items-center justify-between text-[11px] text-zinc-400">
-        <span className="text-[10px]">React Component Hierarchy</span>
-        <span className="text-white font-mono text-[10px]">REST Integration</span>
+      {/* Main Image Display Area */}
+      <div className="relative flex-1 w-full min-h-0 overflow-hidden bg-[#07080b]">
+        <img
+          src="/projects/cureconnect/dashboard.jpg"
+          alt="CureConnect Healthcare Appointment System"
+          className="w-full h-full object-cover object-top transition-transform duration-500 ease-out group-hover:scale-[1.02]"
+          loading="eager"
+        />
+
+        <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-black/85 via-black/40 to-transparent pointer-events-none" />
+
+        <div className="absolute bottom-2 left-2.5 right-2.5 flex items-center justify-between pointer-events-none z-10">
+          <span className="text-[10px] font-mono text-zinc-200 bg-black/80 backdrop-blur-md px-2.5 py-1 rounded-md border border-white/15 shadow-lg truncate max-w-[70%]">
+            Specialist Discovery & Live Slots
+          </span>
+          <span className="text-[10px] font-mono font-semibold text-purple-300 bg-purple-950/80 backdrop-blur-md px-2 py-0.5 rounded-md border border-purple-500/30 shadow-lg shrink-0">
+            React App
+          </span>
+        </div>
       </div>
     </div>
   );
@@ -227,70 +261,44 @@ export function CureConnectPreview() {
 
 export function BatronPreview() {
   return (
-    <div className="w-full h-full bg-[#0c0d12] rounded-2xl p-4 sm:p-5 flex flex-col justify-between font-sans border border-white/10 shadow-2xl overflow-hidden relative group">
-      {/* Top Window Bar */}
-      <div className="flex items-center justify-between pb-3 border-b border-white/[0.08]">
-        <div className="flex items-center gap-2">
-          <div className="w-2.5 h-2.5 rounded-full bg-zinc-600" />
-          <div className="w-2.5 h-2.5 rounded-full bg-zinc-500" />
-          <div className="w-2.5 h-2.5 rounded-full bg-zinc-400" />
-          <span className="ml-2 text-[11px] font-mono text-zinc-400">BATRON-Desktop-Client.exe</span>
-        </div>
-        <div className="flex items-center gap-1.5 text-[10px] font-mono text-white bg-white/[0.08] px-2.5 py-0.5 rounded-full border border-white/15">
-          <Dumbbell className="w-3 h-3 text-white" /> Gym Station
-        </div>
-      </div>
-
-      {/* Main Preview Dashboard Body */}
-      <div className="py-3 space-y-3">
-        {/* Active Member Status Overview */}
-        <div className="grid grid-cols-3 gap-2 text-center">
-          <div className="bg-white/[0.04] border border-white/15 rounded-xl p-2.5">
-            <span className="text-[10px] text-zinc-400 uppercase tracking-wider block">Active</span>
-            <span className="text-sm sm:text-base font-bold text-white font-mono">184</span>
+    <div className="w-full h-full bg-[#0a0c12] rounded-2xl flex flex-col font-sans border border-white/10 shadow-2xl overflow-hidden relative group select-none">
+      {/* Top Desktop Window Header Bar */}
+      <div className="flex items-center justify-between px-3.5 py-2 border-b border-white/[0.08] bg-[#0d0f18]/95 backdrop-blur-md shrink-0 z-20">
+        <div className="flex items-center gap-2 min-w-0">
+          <div className="flex items-center gap-1.5 shrink-0">
+            <span className="w-2.5 h-2.5 rounded-full bg-[#ff5f56]/80" />
+            <span className="w-2.5 h-2.5 rounded-full bg-[#ffbd2e]/80" />
+            <span className="w-2.5 h-2.5 rounded-full bg-[#27c93f]/80" />
           </div>
-          <div className="bg-white/[0.03] border border-white/[0.08] rounded-xl p-2.5">
-            <span className="text-[10px] text-zinc-400 uppercase tracking-wider block">Due Soon</span>
-            <span className="text-sm sm:text-base font-bold text-zinc-200 font-mono">12 members</span>
-          </div>
-          <div className="bg-white/[0.02] border border-white/[0.06] rounded-xl p-2.5">
-            <span className="text-[10px] text-zinc-500 uppercase tracking-wider block">Expired</span>
-            <span className="text-sm sm:text-base font-bold text-zinc-400 font-mono">8 flagged</span>
-          </div>
+          <span className="ml-1 text-[11px] font-mono text-zinc-300 truncate font-medium">
+            BATRON Gym Client • v2.4.0 (Desktop)
+          </span>
         </div>
 
-        {/* Member Table Snippet */}
-        <div className="bg-white/[0.02] border border-white/[0.06] rounded-xl p-3 space-y-1.5 font-mono text-[11px]">
-          <div className="flex items-center justify-between text-zinc-400 text-[10px] uppercase pb-1 border-b border-white/[0.06]">
-            <span>Member</span>
-            <span>Plan</span>
-            <span>Status</span>
-          </div>
-
-          <div className="flex items-center justify-between py-1 border-b border-white/[0.03]">
-            <span className="text-zinc-200 font-sans">Alex Kumar (#092)</span>
-            <span className="text-zinc-400 text-[10px]">Annual Pro</span>
-            <span className="text-white text-[10px] bg-white/10 px-2 py-0.5 rounded border border-white/20">Active</span>
-          </div>
-
-          <div className="flex items-center justify-between py-1 border-b border-white/[0.03]">
-            <span className="text-zinc-200 font-sans">Rajesh S. (#114)</span>
-            <span className="text-zinc-400 text-[10px]">Quarterly</span>
-            <span className="text-zinc-300 text-[10px] bg-white/5 px-2 py-0.5 rounded border border-white/10">Expires in 2d</span>
-          </div>
-
-          <div className="flex items-center justify-between py-1">
-            <span className="text-zinc-200 font-sans">M. Vignesh (#077)</span>
-            <span className="text-zinc-400 text-[10px]">Monthly</span>
-            <span className="text-zinc-500 text-[10px] bg-white/[0.02] px-2 py-0.5 rounded">Overdue</span>
-          </div>
+        <div className="flex items-center gap-1.5 text-[10px] font-mono text-amber-300 bg-amber-950/70 px-2 py-0.5 rounded-md border border-amber-500/30">
+          <span>Membership Station</span>
         </div>
       </div>
 
-      {/* Footer bar */}
-      <div className="pt-2 border-t border-white/[0.06] flex items-center justify-between text-[11px] text-zinc-400">
-        <span className="text-[10px]">Offline-First SQLite Storage</span>
-        <span className="text-white font-mono text-[10px]">Instant Renewal Modal</span>
+      {/* Main Image Display Area */}
+      <div className="relative flex-1 w-full min-h-0 overflow-hidden bg-[#07080b]">
+        <img
+          src="/projects/batron-gym/dashboard.jpg"
+          alt="BATRON Gym Management System"
+          className="w-full h-full object-cover object-top transition-transform duration-500 ease-out group-hover:scale-[1.02]"
+          loading="eager"
+        />
+
+        <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-black/85 via-black/40 to-transparent pointer-events-none" />
+
+        <div className="absolute bottom-2 left-2.5 right-2.5 flex items-center justify-between pointer-events-none z-10">
+          <span className="text-[10px] font-mono text-zinc-200 bg-black/80 backdrop-blur-md px-2.5 py-1 rounded-md border border-white/15 shadow-lg truncate max-w-[70%]">
+            Active Members & Expiration Tracking
+          </span>
+          <span className="text-[10px] font-mono font-semibold text-amber-300 bg-amber-950/80 backdrop-blur-md px-2 py-0.5 rounded-md border border-amber-500/30 shadow-lg shrink-0">
+            Offline SQLite
+          </span>
+        </div>
       </div>
     </div>
   );

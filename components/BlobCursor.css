@@ -1,0 +1,23 @@
+.blob-cursor {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.blob-cursor.fixed {
+  position: fixed;
+  z-index: 9999;
+}
+
+.blob-cursor-canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+@media (hover: none), (pointer: coarse) {
+  .blob-cursor {
+    display: none !important;
+  }
+}
